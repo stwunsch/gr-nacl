@@ -1,0 +1,17 @@
+<block>
+  <name>Generate Keypair</name>
+  <key>nacl_generate_keypair</key>
+  <category>NACL</category>
+  <import>import nacl</import>
+  <make>nacl.generate_keypair($filename_sk, $filename_pk)</make>
+  <param>
+    <name>Filename Secretkey</name>
+    <key>filename_sk</key>
+    <type>string</type>
+  </param>
+  <param>
+    <name>Filename Publickey</name>
+    <key>filename_pk</key>
+    <type>string</type>
+  </param>
+</block>

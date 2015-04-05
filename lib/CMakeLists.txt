@@ -27,6 +27,7 @@ link_directories(${Boost_LIBRARY_DIRS})
 
 list(APPEND nacl_sources
     encrypt_public_impl.cc
+    generate_keypair_impl.cc
 )
 
 set(nacl_sources "${nacl_sources}" PARENT_SCOPE)

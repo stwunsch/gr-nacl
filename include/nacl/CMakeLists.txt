@@ -22,5 +22,6 @@
 ########################################################################
 install(FILES
     api.h
-    encrypt_public.h DESTINATION include/nacl
+    encrypt_public.h
+    generate_keypair.h DESTINATION include/nacl
 )

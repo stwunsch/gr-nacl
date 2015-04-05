@@ -1,3 +1,4 @@
+/* -*- c++ -*- */
 /* 
  * Copyright 2015 Stefan Wunsch
  * 
@@ -16,3 +17,27 @@
  * the Free Software Foundation, Inc., 51 Franklin Street,
  * Boston, MA 02110-1301, USA.
  */
+
+#ifndef INCLUDED_NACL_GENERATE_KEYPAIR_IMPL_H
+#define INCLUDED_NACL_GENERATE_KEYPAIR_IMPL_H
+
+#include <nacl/generate_keypair.h>
+
+namespace gr {
+  namespace nacl {
+
+    class generate_keypair_impl : public generate_keypair
+    {
+     private:
+      // Nothing to declare in this block.
+
+     public:
+      generate_keypair_impl(std::string filename_sk, std::string filename_pk);
+      ~generate_keypair_impl();
+    };
+
+  } // namespace nacl
+} // namespace gr
+
+#endif /* INCLUDED_NACL_GENERATE_KEYPAIR_IMPL_H */
+
