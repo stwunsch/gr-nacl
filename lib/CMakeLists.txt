@@ -36,7 +36,7 @@ if(NOT nacl_sources)
 endif(NOT nacl_sources)
 
 add_library(gnuradio-nacl SHARED ${nacl_sources})
-target_link_libraries(gnuradio-nacl ${Boost_LIBRARIES} ${GNURADIO_ALL_LIBRARIES} ${NACLLIB_LIBRARIES})
+target_link_libraries(gnuradio-nacl ${Boost_LIBRARIES} ${GNURADIO_ALL_LIBRARIES} ${SODIUM_LIBRARIES})
 set_target_properties(gnuradio-nacl PROPERTIES DEFINE_SYMBOL "gnuradio_nacl_EXPORTS")
 
 if(APPLE)
@@ -73,7 +73,7 @@ target_link_libraries(
   ${GNURADIO_RUNTIME_LIBRARIES}
   ${Boost_LIBRARIES}
   ${CPPUNIT_LIBRARIES}
-  ${NACLLIB_LIBRARIES}
+  ${SODIUM_LIBRARIES}
   gnuradio-nacl
 )
 

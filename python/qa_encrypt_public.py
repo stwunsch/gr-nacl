@@ -37,7 +37,7 @@ class qa_encrypt_public (gr_unittest.TestCase):
         msg = pmt.list2(pmt.string_to_symbol("msg_clear"),pmt.string_to_symbol("abcdefgh"))
         
         strobe = blocks.message_strobe(msg, 100)
-        encrypt_public = nacl.encrypt_public("abc","def")
+        encrypt_public = nacl.encrypt_public("abcdabcdabcdabcdabcdabcdabcdabcd","defgdefgdefgdefgdefgdefgdefgdefg")
         debug = blocks.message_debug()
         
         self.tb.msg_connect(strobe,"strobe",encrypt_public,"Msg in")

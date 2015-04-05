@@ -48,6 +48,18 @@ namespace gr {
         d_pk = pk;
         d_sk = sk;
         
+        // Check sizes of secret-key and public-key
+        if(d_pk.size()!=crypto_box_PUBLICKEYBYTES){
+            std::cout << "Size private-key: " << d_pk.size()*sizeof(char) << std::endl;
+            std::cout << "Needed private-key size: " << crypto_box_PUBLICKEYBYTES << std::endl;
+            throw std::runtime_error("Size private-key is wrong.");
+        }
+        if(d_sk.size()!=crypto_box_SECRETKEYBYTES){
+            std::cout << "Size secret-key: " << d_sk.size()*sizeof(char) << std::endl;
+            std::cout << "Needed secret-key size: " << crypto_box_PUBLICKEYBYTES << std::endl;
+            throw std::runtime_error("Size secret-key is wrong.");
+        }
+        
         // Register input message port
         d_port_id_in = pmt::mp("Msg in");
         message_port_register_in(d_port_id_in);
@@ -65,9 +77,14 @@ namespace gr {
         std::string msg_enc;
         std::string nonce;
         
-        d_pk = crypto_box_keypair(&d_sk);
-        std::cout << "PRIVATE: " << d_sk << std::endl;
-        std::cout << "PUBLIC: " << d_pk << std::endl;
+        unsigned char *pk=new unsigned char[d_pk.length()+1];
+        strcpy((char *)pk,d_pk.c_str());
+        unsigned char *sk=new unsigned char[d_sk.length()+1];
+        strcpy((char *)sk,d_sk.c_str());
+        
+        crypto_box_keypair(pk,sk);
+        std::cout << "PRIVATE: " << sk << std::endl;
+        std::cout << "PUBLIC: " << pk << std::endl;
     }
 
     /*
