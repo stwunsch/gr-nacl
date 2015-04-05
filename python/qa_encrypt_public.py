@@ -34,7 +34,8 @@ class qa_encrypt_public (gr_unittest.TestCase):
         self.tb = None
 
     def test_001_t (self):
-        msg = pmt.list2(pmt.string_to_symbol("msg_clear"),pmt.string_to_symbol("abcdefgh"))
+        data = [141,142,143,144,145]
+        msg = pmt.list2(pmt.string_to_symbol("msg_clear"),pmt.init_u8vector(len(data),data))
         filename_sk = "secret.key"
         filename_pk = "public.key"
         nacl.generate_keypair(filename_sk,filename_pk)
@@ -52,6 +53,11 @@ class qa_encrypt_public (gr_unittest.TestCase):
         self.tb.wait()
         
         # check results
+        msg_stored = debug.get_message(0)
+        nonce = pmt.nth(0,msg_stored)
+        msg_encrypted = pmt.nth(1,msg_stored)
+        print pmt.symbol_to_string(pmt.nth(0,nonce)), pmt.u8vector_elements(pmt.nth(1,nonce))
+        print pmt.symbol_to_string(pmt.nth(0,msg_encrypted)), pmt.u8vector_elements(pmt.nth(1,msg_encrypted))
 
 
 if __name__ == '__main__':
