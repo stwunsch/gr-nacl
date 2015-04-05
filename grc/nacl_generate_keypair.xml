@@ -5,12 +5,12 @@
   <import>import nacl</import>
   <make>nacl.generate_keypair($filename_sk, $filename_pk)</make>
   <param>
-    <name>Filename Secretkey</name>
+    <name>Filename secret-key</name>
     <key>filename_sk</key>
     <type>string</type>
   </param>
   <param>
-    <name>Filename Publickey</name>
+    <name>Filename public-key</name>
     <key>filename_pk</key>
     <type>string</type>
   </param>

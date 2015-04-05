@@ -27,6 +27,7 @@
 
 #include <fstream>
 #include "crypto_box.h"
+#include "randombytes.h"
 
 namespace gr {
   namespace nacl {
@@ -82,7 +83,44 @@ namespace gr {
 
     void
     encrypt_public_impl::handle_msg(pmt::pmt_t msg){
+        size_t msg_size = pmt::length(msg);
         
+        // check for unencrypted (clear) messages tagged with symbol 'msg_clear'
+        std::vector<uint8_t> data;
+        for(int k=0; k<msg_size; k++){
+            if(pmt::symbol_to_string(pmt::nth(0,msg))=="msg_clear"){
+                if(pmt::is_u8vector(pmt::nth(1,msg))){
+                    data = pmt::u8vector_elements(pmt::nth(1,msg));
+                }
+            }
+        }
+        
+        // encrypt data
+        if(data.size()!=0){
+            // generate nonce
+            unsigned char nonce[crypto_box_NONCEBYTES];
+            randombytes_buf(nonce, sizeof(nonce));
+            
+            // encrypt message
+            unsigned char data_char[data.size()];
+            for(int k=0; k<data.size(); k++) data_char[k] = (unsigned char)data[k];
+            size_t ciphertext_len = crypto_box_MACBYTES + sizeof(data_char);
+            unsigned char ciphertext[ciphertext_len];
+            crypto_box_easy(ciphertext, data_char, sizeof(data_char), nonce, d_pk, d_sk);
+            
+            // repack msg with symbol 'msg_encrypted' and nonce with symbol 'nonce'
+            std::vector<uint8_t> msg_encrypted; msg_encrypted.resize(ciphertext_len);
+            for(int k=0; k<ciphertext_len; k++) msg_encrypted[k] = (uint8_t)ciphertext[k];
+            
+            std::vector<uint8_t> nonce_vec; nonce_vec.resize(crypto_box_NONCEBYTES);
+            for(int k=0; k<crypto_box_NONCEBYTES; k++) nonce_vec[k] = (uint8_t)nonce[k];
+            
+            pmt::pmt_t msg_out_nonce = pmt::list2(pmt::string_to_symbol("nonce"),pmt::init_u8vector(nonce_vec.size(),nonce_vec));
+            pmt::pmt_t msg_out_data = pmt::list2(pmt::string_to_symbol("msg_encrypted"),pmt::init_u8vector(msg_encrypted.size(),msg_encrypted));
+            
+            // publish msg
+            message_port_pub(d_port_id_out,pmt::list2(msg_out_nonce,msg_out_data));
+        }
     }
 
     /*
