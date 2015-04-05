@@ -1,6 +1,6 @@
 /* -*- c++ -*- */
 /* 
- * Copyright 2015 <+YOU OR YOUR COMPANY+>.
+ * Copyright 2015 Stefan Wunsch
  * 
  * This is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ namespace gr {
        * class. nacl::encrypt_public::make is the public interface for
        * creating new instances.
        */
-      static sptr make(std::string pk, std::string sk);
+      static sptr make(std::string filename_pk, std::string filename_sk);
     };
 
   } // namespace nacl

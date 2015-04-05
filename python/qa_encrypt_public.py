@@ -35,9 +35,12 @@ class qa_encrypt_public (gr_unittest.TestCase):
 
     def test_001_t (self):
         msg = pmt.list2(pmt.string_to_symbol("msg_clear"),pmt.string_to_symbol("abcdefgh"))
+        filename_sk = "secret.key"
+        filename_pk = "public.key"
+        nacl.generate_keypair(filename_sk,filename_pk)
         
         strobe = blocks.message_strobe(msg, 100)
-        encrypt_public = nacl.encrypt_public("abcdabcdabcdabcdabcdabcdabcdabcd","defgdefgdefgdefgdefgdefgdefgdefg")
+        encrypt_public = nacl.encrypt_public(filename_pk,filename_sk)
         debug = blocks.message_debug()
         
         self.tb.msg_connect(strobe,"strobe",encrypt_public,"Msg in")
@@ -52,4 +55,4 @@ class qa_encrypt_public (gr_unittest.TestCase):
 
 
 if __name__ == '__main__':
-    gr_unittest.run(qa_encrypt_public, "qa_encrypt_public.xml")
+    gr_unittest.run(qa_encrypt_public)#, "qa_encrypt_public.xml")

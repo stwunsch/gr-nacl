@@ -1,6 +1,6 @@
 /* -*- c++ -*- */
 /* 
- * Copyright 2015 <+YOU OR YOUR COMPANY+>.
+ * Copyright 2015 Stefan Wunsch
  * 
  * This is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,40 +25,50 @@
 #include <gnuradio/io_signature.h>
 #include "encrypt_public_impl.h"
 
+#include <fstream>
 #include "crypto_box.h"
 
 namespace gr {
   namespace nacl {
 
     encrypt_public::sptr
-    encrypt_public::make(std::string pk, std::string sk)
+    encrypt_public::make(std::string filename_pk, std::string filename_sk)
     {
       return gnuradio::get_initial_sptr
-        (new encrypt_public_impl(pk, sk));
+        (new encrypt_public_impl(filename_pk, filename_sk));
     }
 
     /*
      * The private constructor
      */
-    encrypt_public_impl::encrypt_public_impl(std::string pk, std::string sk)
+    encrypt_public_impl::encrypt_public_impl(std::string filename_pk, std::string filename_sk)
       : gr::block("encrypt_public",
               gr::io_signature::make(0, 0, 0),
               gr::io_signature::make(0, 0, 0))
     {
-        d_pk = pk;
-        d_sk = sk;
+        d_filename_pk = filename_pk;
+        d_filename_sk = filename_sk;
+        d_pk = new unsigned char[crypto_box_PUBLICKEYBYTES];
+        d_sk = new unsigned char[crypto_box_SECRETKEYBYTES];
         
-        // Check sizes of secret-key and public-key
-        if(d_pk.size()!=crypto_box_PUBLICKEYBYTES){
-            std::cout << "Size private-key: " << d_pk.size()*sizeof(char) << std::endl;
-            std::cout << "Needed private-key size: " << crypto_box_PUBLICKEYBYTES << std::endl;
-            throw std::runtime_error("Size private-key is wrong.");
+        // Load keys from files
+        char c;
+        
+        std::ifstream file_sk(filename_sk.c_str());
+        if(not(file_sk.is_open())) throw std::runtime_error("Secret-key file not found.");
+        for(int k=0; k<crypto_box_SECRETKEYBYTES; k++){
+            file_sk.get(c);
+            d_sk[k] = c;
         }
-        if(d_sk.size()!=crypto_box_SECRETKEYBYTES){
-            std::cout << "Size secret-key: " << d_sk.size()*sizeof(char) << std::endl;
-            std::cout << "Needed secret-key size: " << crypto_box_PUBLICKEYBYTES << std::endl;
-            throw std::runtime_error("Size secret-key is wrong.");
+        file_sk.close();
+        
+        std::ifstream file_pk(filename_pk.c_str());
+        if(not(file_pk.is_open())) throw std::runtime_error("Public-key file not found.");
+        for(int k=0; k<crypto_box_PUBLICKEYBYTES; k++){
+            file_pk.get(c);
+            d_pk[k] = c;
         }
+        file_pk.close();
         
         // Register input message port
         d_port_id_in = pmt::mp("Msg in");
@@ -72,19 +82,7 @@ namespace gr {
 
     void
     encrypt_public_impl::handle_msg(pmt::pmt_t msg){
-        std::cout << "encrypt_public: GOT MSG" << std::endl;
         
-        std::string msg_enc;
-        std::string nonce;
-        
-        unsigned char *pk=new unsigned char[d_pk.length()+1];
-        strcpy((char *)pk,d_pk.c_str());
-        unsigned char *sk=new unsigned char[d_sk.length()+1];
-        strcpy((char *)sk,d_sk.c_str());
-        
-        crypto_box_keypair(pk,sk);
-        std::cout << "PRIVATE: " << sk << std::endl;
-        std::cout << "PUBLIC: " << pk << std::endl;
     }
 
     /*
@@ -92,6 +90,8 @@ namespace gr {
      */
     encrypt_public_impl::~encrypt_public_impl()
     {
+        delete[] d_pk;
+        delete[] d_sk;
     }
 
   } /* namespace nacl */

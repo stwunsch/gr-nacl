@@ -1,6 +1,6 @@
 /* -*- c++ -*- */
 /* 
- * Copyright 2015 <+YOU OR YOUR COMPANY+>.
+ * Copyright 2015 Stefan Wunsch
  * 
  * This is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,13 +32,14 @@ namespace gr {
       // Nothing to declare in this block.
 
      public:
-      encrypt_public_impl(std::string pk, std::string sk);
+      encrypt_public_impl(std::string filename_pk, std::string filename_sk);
       ~encrypt_public_impl();
       
       void handle_msg(pmt::pmt_t msg);
       
       pmt::pmt_t d_port_id_in, d_port_id_out;
-      std::string d_pk, d_sk;
+      std::string d_filename_pk, d_filename_sk;
+      unsigned char *d_pk, *d_sk;
     };
 
   } // namespace nacl
