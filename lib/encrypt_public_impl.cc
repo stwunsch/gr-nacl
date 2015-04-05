@@ -61,6 +61,13 @@ namespace gr {
     void
     encrypt_public_impl::handle_msg(pmt::pmt_t msg){
         std::cout << "encrypt_public: GOT MSG" << std::endl;
+        
+        std::string msg_enc;
+        std::string nonce;
+        
+        d_pk = crypto_box_keypair(&d_sk);
+        std::cout << "PRIVATE: " << d_sk << std::endl;
+        std::cout << "PUBLIC: " << d_pk << std::endl;
     }
 
     /*

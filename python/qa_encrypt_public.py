@@ -22,6 +22,8 @@
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
 import nacl_swig as nacl
+import pmt
+from time import sleep
 
 class qa_encrypt_public (gr_unittest.TestCase):
 
@@ -32,9 +34,21 @@ class qa_encrypt_public (gr_unittest.TestCase):
         self.tb = None
 
     def test_001_t (self):
-        # set up fg
-        self.tb.run ()
-        # check data
+        msg = pmt.list2(pmt.string_to_symbol("msg_clear"),pmt.string_to_symbol("abcdefgh"))
+        
+        strobe = blocks.message_strobe(msg, 100)
+        encrypt_public = nacl.encrypt_public("abc","def")
+        debug = blocks.message_debug()
+        
+        self.tb.msg_connect(strobe,"strobe",encrypt_public,"Msg in")
+        self.tb.msg_connect(encrypt_public,"Msg out",debug,"store")
+        
+        self.tb.start()
+        sleep(0.15)
+        self.tb.stop()
+        self.tb.wait()
+        
+        # check results
 
 
 if __name__ == '__main__':

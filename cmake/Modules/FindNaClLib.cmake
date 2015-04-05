@@ -9,14 +9,13 @@ find_path(
 
 find_library(
     NACLLIB_LIBRARIES
-    NAMES nacl
-          libnacl
+    NAMES libnacl.a
     HINTS /usr/local/lib
     PATHS /usr/local/lib/nacl/lib/amd64
 )
 
-message(STATUS "INCLUDE " ${NACLLIB_INCLUDE_DIRS})
-message(STATUS "LIBRARY " ${NACLLIB_LIBRARIES})
+#message(STATUS "INCLUDE " ${NACLLIB_INCLUDE_DIRS})
+#message(STATUS "LIBRARY " ${NACLLIB_LIBRARIES})
 
 if(NACLLIB_LIBRARIES AND NACLLIB_INCLUDE_DIRS)
     include(FindPackageHandleStandardArgs)
