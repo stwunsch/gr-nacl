@@ -35,7 +35,7 @@ class qa_encrypt_public (gr_unittest.TestCase):
 
     def test_001_t (self):
         data = [141,142,143,144,145]
-        msg = pmt.list2(pmt.string_to_symbol("msg_clear"),pmt.init_u8vector(len(data),data))
+        msg = pmt.list1(pmt.list2(pmt.string_to_symbol("msg_clear"),pmt.init_u8vector(len(data),data)))
         filename_sk = "secret.key"
         filename_pk = "public.key"
         nacl.generate_keypair(filename_sk,filename_pk)

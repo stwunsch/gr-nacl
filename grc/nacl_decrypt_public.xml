@@ -1,0 +1,17 @@
+<block>
+  <name>Decrypt Public</name>
+  <key>nacl_decrypt_public</key>
+  <category>NACL</category>
+  <import>import nacl</import>
+  <make>nacl.decrypt_public($filename_pk, $filename_sk)</make>
+  <param>
+    <name>Filename public-key</name>
+    <key>filename_pk</key>
+    <type>string</type>
+  </param>
+  <param>
+    <name>Filename secret-key</name>
+    <key>filename_sk</key>
+    <type>string</type>
+  </param>
+</block>

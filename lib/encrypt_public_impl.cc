@@ -85,12 +85,12 @@ namespace gr {
     encrypt_public_impl::handle_msg(pmt::pmt_t msg){
         size_t msg_size = pmt::length(msg);
         
-        // check for unencrypted (clear) messages tagged with symbol 'msg_clear'
+        // check for unencrypted (clear) message tagged with symbol 'msg_clear'
         std::vector<uint8_t> data;
         for(int k=0; k<msg_size; k++){
-            if(pmt::symbol_to_string(pmt::nth(0,msg))=="msg_clear"){
-                if(pmt::is_u8vector(pmt::nth(1,msg))){
-                    data = pmt::u8vector_elements(pmt::nth(1,msg));
+            if(pmt::symbol_to_string(pmt::nth(0,pmt::nth(k,msg)))=="msg_clear"){
+                if(pmt::is_u8vector(pmt::nth(1,pmt::nth(k,msg)))){
+                    data = pmt::u8vector_elements(pmt::nth(1,pmt::nth(k,msg)));
                 }
             }
         }
