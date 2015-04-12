@@ -26,8 +26,7 @@
 #include "encrypt_public_impl.h"
 
 #include <fstream>
-#include "crypto_box.h"
-#include "randombytes.h"
+#include <sodium.h>
 
 namespace gr {
   namespace nacl {
@@ -83,6 +82,8 @@ namespace gr {
 
     void
     encrypt_public_impl::handle_msg(pmt::pmt_t msg){
+        std::cout << "// DEBUG ENCRYPTION" << std::endl;
+        
         size_t msg_size = pmt::length(msg);
         
         // check for unencrypted (clear) message tagged with symbol 'msg_clear'
@@ -101,6 +102,18 @@ namespace gr {
             unsigned char nonce[crypto_box_NONCEBYTES];
             randombytes_buf(nonce, sizeof(nonce));
             
+            std::cout << "DEBUG CLEAR MESSAGE: ";
+            for(int k=0; k<data.size(); k++) std::cout << (int)data[k] << " ";
+            std::cout << std::endl;
+            
+            std::cout << "DEBUG PUBLIC KEY ENCRYPTION: ";
+            for(int k=0; k<sizeof(d_pk); k++) std::cout << (int)d_pk[k] << " ";
+            std::cout << std::endl;
+            
+            std::cout << "DEBUG SECRET KEY ENCRYPTION: ";
+            for(int k=0; k<sizeof(d_sk); k++) std::cout << (int)d_sk[k] << " ";
+            std::cout << std::endl;
+            
             // encrypt message
             unsigned char data_char[data.size()];
             for(int k=0; k<data.size(); k++) data_char[k] = (unsigned char)data[k];
@@ -108,12 +121,24 @@ namespace gr {
             unsigned char ciphertext[ciphertext_len];
             crypto_box_easy(ciphertext, data_char, sizeof(data_char), nonce, d_pk, d_sk);
             
+            std::cout << "DEBUG ENCRYPTED MESSAGE: ";
+            for(int k=0; k<ciphertext_len; k++) std::cout << (int)ciphertext[k] << " ";
+            std::cout << std::endl;
+            
+            std::cout << "DEBUG NONCE CHAR: ";
+            for(int k=0; k<sizeof(nonce); k++) std::cout << (int)nonce[k] << " ";
+            std::cout << std::endl;
+            
             // repack msg with symbol 'msg_encrypted' and nonce with symbol 'nonce'
             std::vector<uint8_t> msg_encrypted; msg_encrypted.resize(ciphertext_len);
             for(int k=0; k<ciphertext_len; k++) msg_encrypted[k] = (uint8_t)ciphertext[k];
             
             std::vector<uint8_t> nonce_vec; nonce_vec.resize(crypto_box_NONCEBYTES);
             for(int k=0; k<crypto_box_NONCEBYTES; k++) nonce_vec[k] = (uint8_t)nonce[k];
+            
+            std::cout << "DEBUG NONCE VEC: ";
+            for(int k=0; k<sizeof(nonce); k++) std::cout << (int)nonce[k] << " ";
+            std::cout << std::endl;
             
             pmt::pmt_t msg_out_nonce = pmt::list2(pmt::string_to_symbol("nonce"),pmt::init_u8vector(nonce_vec.size(),nonce_vec));
             pmt::pmt_t msg_out_data = pmt::list2(pmt::string_to_symbol("msg_encrypted"),pmt::init_u8vector(msg_encrypted.size(),msg_encrypted));

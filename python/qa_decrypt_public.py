@@ -35,7 +35,7 @@ class qa_decrypt_public (gr_unittest.TestCase):
         self.tb = None
 
     def test_001_t (self):
-        data = [141,142,143,144,145]
+        data = [ord('a'),ord('b'),ord('c'),ord('d')]
         msg = pmt.list1(pmt.list2(pmt.string_to_symbol("msg_clear"),pmt.init_u8vector(len(data),data)))
         filename_sk_a = "secret.a"
         filename_pk_a = "public.a"

@@ -26,7 +26,7 @@
 #include "decrypt_public_impl.h"
 
 #include <fstream>
-#include "crypto_box.h"
+#include <sodium.h>
 
 namespace gr {
   namespace nacl {
@@ -91,6 +91,8 @@ namespace gr {
     
     void
     decrypt_public_impl::handle_msg(pmt::pmt_t msg){
+        std::cout << "// DEBUG DECRYPTION" << std::endl;
+        
         size_t msg_size = pmt::length(msg);
         
         // check for encrypted message tagged with symbol 'msg_encrypted' and nonce tagged with 'nonce'
@@ -121,13 +123,38 @@ namespace gr {
             for(int k=0; k<nonce.size(); k++) nonce_char[k] = (unsigned char)nonce[k];
             size_t msg_len = sizeof(data_char)-crypto_box_MACBYTES;
             unsigned char msg_decrypted[msg_len];
-            int msg_status = crypto_box_easy(msg_decrypted, data_char, sizeof(data_char), nonce_char, d_pk, d_sk);
+            
+            std::cout << "DEBUG ENCRYPTED MESSAGE 2: ";
+            for(int k=0; k<sizeof(data_char); k++) std::cout << (int)data_char[k] << " ";
+            std::cout << std::endl;
+            
+            std::cout << "DEBUG NONCE CHAR 2: ";
+            for(int k=0; k<sizeof(nonce_char); k++) std::cout << (int)nonce_char[k] << " ";
+            std::cout << std::endl;
+            
+            std::cout << "DEBUG NONCE VEC 2: ";
+            for(int k=0; k<nonce.size(); k++) std::cout << (int)nonce[k] << " ";
+            std::cout << std::endl;
+            
+            std::cout << "DEBUG PUBLIC KEY DECRYPTION: ";
+            for(int k=0; k<sizeof(d_pk); k++) std::cout << (int)d_pk[k] << " ";
+            std::cout << std::endl;
+            
+            std::cout << "DEBUG SECRET KEY DECRYPTION: ";
+            for(int k=0; k<sizeof(d_sk); k++) std::cout << (int)d_sk[k] << " ";
+            std::cout << std::endl;
+            
+            int msg_status = crypto_box_open_easy(msg_decrypted, data_char, sizeof(data_char), nonce_char, d_pk, d_sk);
             
             // check whether msg is successfully decrypted
-            if(msg_status!=0){
+            if(msg_status==0){
                 // repack msg with symbol 'msg_decrypted'
                 std::vector<uint8_t> msg_decrypted_vec; msg_decrypted_vec.resize(msg_len);
                 for(int k=0; k<msg_len; k++) msg_decrypted_vec[k] = (uint8_t)msg_decrypted[k];
+                
+                std::cout << "DEBUG DECRYPTED MESSAGE: ";
+                for(int k=0; k<msg_len; k++) std::cout << (int)msg_decrypted_vec[k] << " ";
+                std::cout << std::endl;
                 
                 pmt::pmt_t msg_out = pmt::list2(pmt::string_to_symbol("msg_decrypted"),pmt::init_u8vector(msg_decrypted_vec.size(),msg_decrypted_vec));
                 
