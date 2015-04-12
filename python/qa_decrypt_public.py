@@ -64,6 +64,9 @@ class qa_decrypt_public (gr_unittest.TestCase):
         msg_decrypted = pmt.u8vector_elements(pmt.nth(1,pmt.nth(0,msg_out)))
         print msg_symbol, msg_decrypted
         print "msg_clear", data
+        
+        for k in range(len(data)):
+            self.assertEqual(data[k],msg_decrypted[k])
 
 if __name__ == '__main__':
     gr_unittest.run(qa_decrypt_public)#, "qa_decrypt_public.xml")

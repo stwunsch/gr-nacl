@@ -64,14 +64,6 @@ namespace gr {
         
         std::cout << "Keypair saved to file." << std::endl;
         
-        std::cout << "DEBUG PUBLIC KEY: ";
-        for(int k=0; k<sizeof(pk); k++) std::cout << (int)pk[k] << " ";
-        std::cout << std::endl;
-        
-        std::cout << "DEBUG SECRET KEY: ";
-        for(int k=0; k<sizeof(sk); k++) std::cout << (int)sk[k] << " ";
-        std::cout << std::endl;
-        
         // clean-up
         delete[] pk;
         delete[] sk;
