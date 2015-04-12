@@ -49,9 +49,9 @@ class qa_decrypt_public (gr_unittest.TestCase):
         decrypt_public = nacl.decrypt_public(filename_pk_a,filename_sk_b)
         debug = blocks.message_debug()
         
-        self.tb.msg_connect(strobe,"strobe",encrypt_public,"Msg in")
-        self.tb.msg_connect(encrypt_public,"Msg out",decrypt_public,"Msg in")
-        self.tb.msg_connect(decrypt_public,"Msg out",debug,"store")
+        self.tb.msg_connect(strobe,"strobe",encrypt_public,"Msg clear")
+        self.tb.msg_connect(encrypt_public,"Msg encrypted",decrypt_public,"Msg encrypted")
+        self.tb.msg_connect(decrypt_public,"Msg decrypted",debug,"store")
         
         self.tb.start()
         sleep(0.15)

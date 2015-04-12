@@ -44,8 +44,8 @@ class qa_encrypt_public (gr_unittest.TestCase):
         encrypt_public = nacl.encrypt_public(filename_pk,filename_sk)
         debug = blocks.message_debug()
         
-        self.tb.msg_connect(strobe,"strobe",encrypt_public,"Msg in")
-        self.tb.msg_connect(encrypt_public,"Msg out",debug,"store")
+        self.tb.msg_connect(strobe,"strobe",encrypt_public,"Msg clear")
+        self.tb.msg_connect(encrypt_public,"Msg encrypted",debug,"store")
         
         self.tb.start()
         sleep(0.15)

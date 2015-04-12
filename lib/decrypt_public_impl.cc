@@ -71,12 +71,12 @@ namespace gr {
         file_pk.close();
         
         // Register input message port
-        d_port_id_in = pmt::mp("Msg in");
+        d_port_id_in = pmt::mp("Msg encrypted");
         message_port_register_in(d_port_id_in);
         set_msg_handler(d_port_id_in, boost::bind(&decrypt_public_impl::handle_msg, this, _1));
         
         // Register output message port
-        d_port_id_out = pmt::mp("Msg out");
+        d_port_id_out = pmt::mp("Msg decrypted");
         message_port_register_out(d_port_id_out);
     }
 

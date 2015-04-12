@@ -5,13 +5,23 @@
   <import>import nacl</import>
   <make>nacl.decrypt_public($filename_pk, $filename_sk)</make>
   <param>
-    <name>Filename public-key</name>
+    <name>Filename public-key (sender)</name>
     <key>filename_pk</key>
     <type>string</type>
   </param>
   <param>
-    <name>Filename secret-key</name>
+    <name>Filename secret-key (receiver)</name>
     <key>filename_sk</key>
     <type>string</type>
   </param>
+  <sink>
+    <name>Msg encrypted</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+  <source>
+    <name>Msg decrypted</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
 </block>
