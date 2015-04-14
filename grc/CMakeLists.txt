@@ -20,5 +20,6 @@
 install(FILES
     nacl_encrypt_public.xml
     nacl_generate_keypair.xml
-    nacl_decrypt_public.xml DESTINATION share/gnuradio/grc/blocks
+    nacl_decrypt_public.xml
+    nacl_generate_key.xml DESTINATION share/gnuradio/grc/blocks
 )

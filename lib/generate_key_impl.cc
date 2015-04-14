@@ -1,6 +1,5 @@
 /* -*- c++ -*- */
-/* 
- * Copyright 2015 Stefan Wunsch
+/* Copyright 2015 Stefan Wunsch
  * 
  * This is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +22,7 @@
 #endif
 
 #include <gnuradio/io_signature.h>
-#include "generate_keypair_impl.h"
+#include "generate_key_impl.h"
 
 #include <fstream>
 #include "sodium.h"
@@ -31,48 +30,42 @@
 namespace gr {
   namespace nacl {
 
-    generate_keypair::sptr
-    generate_keypair::make(std::string filename_sk, std::string filename_pk)
+    generate_key::sptr
+    generate_key::make(std::string filename_key)
     {
       return gnuradio::get_initial_sptr
-        (new generate_keypair_impl(filename_sk, filename_pk));
+        (new generate_key_impl(filename_key));
     }
 
     /*
      * The private constructor
      */
-    generate_keypair_impl::generate_keypair_impl(std::string filename_sk, std::string filename_pk)
-      : gr::block("generate_keypair",
+    generate_key_impl::generate_key_impl(std::string filename_key)
+      : gr::block("generate_key",
               gr::io_signature::make(0,0,0),
               gr::io_signature::make(0,0,0))
     {
-        unsigned char *pk = new unsigned char[crypto_box_PUBLICKEYBYTES];
-        unsigned char *sk = new unsigned char[crypto_box_SECRETKEYBYTES];
+        unsigned char *key = new unsigned char[crypto_secretbox_KEYBYTES];
         
         // generate keypair
-        crypto_box_keypair(pk,sk);
-        std::cout << "Keypair [" << filename_sk << ", " << filename_pk << "] generated successfully." << std::endl;
+        randombytes_buf(key,sizeof(key));
+        std::cout << "Key " << filename_key << " generated successfully." << std::endl;
         
         // save keys to files
-        std::ofstream file_sk(filename_sk.c_str());
-        for(int k=0;k<crypto_box_SECRETKEYBYTES; k++) file_sk << sk[k];
-        file_sk.close();
+        std::ofstream file_key(filename_key.c_str());
+        for(int k=0;k<crypto_secretbox_KEYBYTES; k++) file_key << key[k];
+        file_key.close();
         
-        std::ofstream file_pk(filename_pk.c_str());
-        for(int k=0;k<crypto_box_PUBLICKEYBYTES; k++) file_pk << pk[k];
-        file_pk.close();
-        
-        std::cout << "Keypair [" << filename_sk << ", " << filename_pk << "] saved to file." << std::endl;
+        std::cout << "Key " << filename_key << " saved to file." << std::endl;
         
         // clean-up
-        delete[] pk;
-        delete[] sk;
+        delete[] key;
     }
 
     /*
      * Our virtual destructor.
      */
-    generate_keypair_impl::~generate_keypair_impl()
+    generate_key_impl::~generate_key_impl()
     {
     }
 

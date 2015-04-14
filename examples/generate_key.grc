@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='ASCII'?>
 <?grc format='1' created='3.7.6'?>
 <flow_graph>
-  <timestamp>Sun Apr  5 20:23:17 2015</timestamp>
+  <timestamp>Tue Apr 14 18:15:30 2015</timestamp>
   <block>
     <key>options</key>
     <param>
@@ -85,7 +85,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(8, 171)</value>
+      <value>(10, 170)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -93,22 +93,18 @@
     </param>
   </block>
   <block>
-    <key>nacl_generate_keypair</key>
+    <key>nacl_generate_key</key>
     <param>
       <key>id</key>
-      <value>nacl_generate_keypair_0</value>
+      <value>nacl_generate_key_0</value>
     </param>
     <param>
       <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
-      <key>filename_sk</key>
-      <value>"secret.alice"</value>
-    </param>
-    <param>
-      <key>filename_pk</key>
-      <value>"public.alice"</value>
+      <key>filename_key</key>
+      <value>"test.key"</value>
     </param>
     <param>
       <key>alias</key>
@@ -116,38 +112,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(104, 171)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>nacl_generate_keypair</key>
-    <param>
-      <key>id</key>
-      <value>nacl_generate_keypair_0_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>filename_sk</key>
-      <value>"secret.bob"</value>
-    </param>
-    <param>
-      <key>filename_pk</key>
-      <value>"public.bob"</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(280, 171)</value>
+      <value>(184, 259)</value>
     </param>
     <param>
       <key>_rotation</key>
