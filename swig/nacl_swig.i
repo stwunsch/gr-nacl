@@ -12,6 +12,7 @@
 #include "nacl/generate_keypair.h"
 #include "nacl/decrypt_public.h"
 #include "nacl/generate_key.h"
+#include "nacl/encrypt_secret.h"
 %}
 
 
@@ -23,3 +24,5 @@ GR_SWIG_BLOCK_MAGIC2(nacl, generate_keypair);
 GR_SWIG_BLOCK_MAGIC2(nacl, decrypt_public);
 %include "nacl/generate_key.h"
 GR_SWIG_BLOCK_MAGIC2(nacl, generate_key);
+%include "nacl/encrypt_secret.h"
+GR_SWIG_BLOCK_MAGIC2(nacl, encrypt_secret);

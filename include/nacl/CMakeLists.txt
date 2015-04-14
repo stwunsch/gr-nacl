@@ -25,5 +25,6 @@ install(FILES
     encrypt_public.h
     generate_keypair.h
     decrypt_public.h
-    generate_key.h DESTINATION include/nacl
+    generate_key.h
+    encrypt_secret.h DESTINATION include/nacl
 )

@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 
-# Copyright 2015 <+YOU OR YOUR COMPANY+>.
+# Copyright 2015 Stefan Wunsch
 # 
 # This is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +24,7 @@ import nacl_swig as nacl
 import pmt
 from time import sleep
 
-class qa_encrypt_public (gr_unittest.TestCase):
+class qa_encrypt_secret (gr_unittest.TestCase):
 
     def setUp (self):
         self.tb = gr.top_block ()
@@ -36,16 +35,15 @@ class qa_encrypt_public (gr_unittest.TestCase):
     def test_001_t (self):
         data = [ord('t'),ord('e'),ord('s'),ord('t')]
         msg = pmt.list1(pmt.list2(pmt.string_to_symbol("msg_clear"),pmt.init_u8vector(len(data),data)))
-        filename_sk = "secret.key"
-        filename_pk = "public.key"
-        nacl.generate_keypair(filename_sk,filename_pk)
+        filename_key = "secret.key"
+        nacl.generate_key(filename_key)
         
         strobe = blocks.message_strobe(msg, 100)
-        encrypt_public = nacl.encrypt_public(filename_pk,filename_sk)
+        encrypt_secret = nacl.encrypt_secret(filename_key)
         debug = blocks.message_debug()
         
-        self.tb.msg_connect(strobe,"strobe",encrypt_public,"Msg clear")
-        self.tb.msg_connect(encrypt_public,"Msg encrypted",debug,"store")
+        self.tb.msg_connect(strobe,"strobe",encrypt_secret,"Msg clear")
+        self.tb.msg_connect(encrypt_secret,"Msg encrypted",debug,"store")
         
         self.tb.start()
         sleep(0.15)
@@ -61,4 +59,4 @@ class qa_encrypt_public (gr_unittest.TestCase):
 
 
 if __name__ == '__main__':
-    gr_unittest.run(qa_encrypt_public)#, "qa_encrypt_public.xml")
+    gr_unittest.run(qa_encrypt_secret)#, "qa_encrypt_secret.xml")
