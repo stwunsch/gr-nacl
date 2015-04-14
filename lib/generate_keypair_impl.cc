@@ -51,7 +51,7 @@ namespace gr {
         
         // generate keypair
         crypto_box_keypair(pk,sk);
-        std::cout << "Keypair generated successfully." << std::endl;
+        std::cout << "Keypair [" << filename_sk << ", " << filename_pk << "] generated successfully." << std::endl;
         
         // save keys to files
         std::ofstream file_sk(filename_sk.c_str());
@@ -62,7 +62,7 @@ namespace gr {
         for(int k=0;k<crypto_box_PUBLICKEYBYTES; k++) file_pk << pk[k];
         file_pk.close();
         
-        std::cout << "Keypair saved to file." << std::endl;
+        std::cout << "Keypair [" << filename_sk << ", " << filename_pk << "] saved to file." << std::endl;
         
         // clean-up
         delete[] pk;
