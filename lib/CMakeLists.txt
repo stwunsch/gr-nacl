@@ -31,6 +31,7 @@ list(APPEND nacl_sources
     decrypt_public_impl.cc
     generate_key_impl.cc
     encrypt_secret_impl.cc
+    decrypt_secret_impl.cc
 )
 
 set(nacl_sources "${nacl_sources}" PARENT_SCOPE)

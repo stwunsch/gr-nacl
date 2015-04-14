@@ -13,6 +13,7 @@
 #include "nacl/decrypt_public.h"
 #include "nacl/generate_key.h"
 #include "nacl/encrypt_secret.h"
+#include "nacl/decrypt_secret.h"
 %}
 
 
@@ -26,3 +27,5 @@ GR_SWIG_BLOCK_MAGIC2(nacl, decrypt_public);
 GR_SWIG_BLOCK_MAGIC2(nacl, generate_key);
 %include "nacl/encrypt_secret.h"
 GR_SWIG_BLOCK_MAGIC2(nacl, encrypt_secret);
+%include "nacl/decrypt_secret.h"
+GR_SWIG_BLOCK_MAGIC2(nacl, decrypt_secret);
