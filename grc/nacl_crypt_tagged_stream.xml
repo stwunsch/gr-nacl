@@ -1,0 +1,30 @@
+<block>
+  <name>Crypt Tagged Stream</name>
+  <key>nacl_crypt_tagged_stream</key>
+  <category>NACL</category>
+  <import>import nacl</import>
+  <make>nacl.crypt_tagged_stream($key, $nonce, $len_key)</make>
+  <param>
+    <name>Key</name>
+    <key>key</key>
+    <type>string</type>
+  </param>
+  <param>
+    <name>Nonce</name>
+    <key>nonce</key>
+    <type>string</type>
+  </param>
+  <param>
+    <name>Packet length key</name>
+    <key>len_key</key>
+    <type>string</type>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>raw</type>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>raw</type>
+  </source>
+</block>

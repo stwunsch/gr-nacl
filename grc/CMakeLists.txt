@@ -23,5 +23,6 @@ install(FILES
     nacl_decrypt_public.xml
     nacl_generate_key.xml
     nacl_encrypt_secret.xml
-    nacl_decrypt_secret.xml DESTINATION share/gnuradio/grc/blocks
+    nacl_decrypt_secret.xml
+    nacl_crypt_tagged_stream.xml DESTINATION share/gnuradio/grc/blocks
 )
