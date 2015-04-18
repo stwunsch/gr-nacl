@@ -1,10 +1,12 @@
 find_path(
     SODIUM_INCLUDE_DIRS
-    NAMES crypto_box.h
+    NAMES sodium.h
+          crypto_box.h
           crypto_stream.h
           crypto_hash.h
     HINTS /usr/local/include
     PATHS /usr/local/include/sodium
+          ../libsodium/src/libsodium/include
 )
 
 find_library(
@@ -12,6 +14,7 @@ find_library(
     NAMES libsodium.so
     HINTS /usr/local/lib
     PATHS /usr/local/lib/sodium
+          ../libsodium/src/libsodium/.libs
 )
 
 #message(WARNING "SODIUM INCLUDE " ${SODIUM_INCLUDE_DIRS})
