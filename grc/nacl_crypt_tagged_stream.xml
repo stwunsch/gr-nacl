@@ -3,7 +3,7 @@
   <key>nacl_crypt_tagged_stream</key>
   <category>NACL</category>
   <import>import nacl</import>
-  <make>nacl.crypt_tagged_stream($key, $nonce, $len_key)</make>
+  <make>nacl.crypt_tagged_stream($key, $nonce, $rotate_nonce, $len_key)</make>
   <param>
     <name>Key</name>
     <key>key</key>
@@ -13,6 +13,20 @@
     <name>Nonce</name>
     <key>nonce</key>
     <type>string</type>
+  </param>
+  <param>
+    <name>Rotate nonce</name>
+    <key>rotate_nonce</key>
+    <value>False</value>
+    <type>bool</type>
+      <option>
+        <name>True</name>
+        <key>True</key>
+      </option>
+      <option>
+        <name>False</name>
+        <key>False</key>
+      </option>
   </param>
   <param>
     <name>Packet length key</name>

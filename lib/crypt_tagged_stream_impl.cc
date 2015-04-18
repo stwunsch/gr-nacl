@@ -30,22 +30,23 @@ namespace gr {
   namespace nacl {
 
     crypt_tagged_stream::sptr
-    crypt_tagged_stream::make(std::string key, std::string nonce, const std::string& len_key)
+    crypt_tagged_stream::make(std::string key, std::string nonce, bool rotate_nonce, const std::string& len_key)
     {
       return gnuradio::get_initial_sptr
-        (new crypt_tagged_stream_impl(key, nonce, len_key));
+        (new crypt_tagged_stream_impl(key, nonce, rotate_nonce, len_key));
     }
 
     /*
      * The private constructor
      */
-    crypt_tagged_stream_impl::crypt_tagged_stream_impl(std::string key, std::string nonce, const std::string& len_key)
+    crypt_tagged_stream_impl::crypt_tagged_stream_impl(std::string key, std::string nonce, bool rotate_nonce, const std::string& len_key)
       : gr::tagged_stream_block("crypt_tagged_stream",
               gr::io_signature::make(1, 1, sizeof(uint8_t)),
               gr::io_signature::make(1, 1, sizeof(uint8_t)), len_key)
     {
-        d_key = new unsigned char[crypto_stream_KEYBYTES];
-        d_nonce = new unsigned char[crypto_stream_NONCEBYTES];
+        d_key = new uint8_t[crypto_stream_KEYBYTES];
+        d_nonce = new uint8_t[crypto_stream_NONCEBYTES];
+        d_rotate_nonce = rotate_nonce;
         
         // Error-handling nonce and key sizes
         if(key.size()!=crypto_stream_KEYBYTES){
@@ -95,6 +96,17 @@ namespace gr {
         
          // Tell runtime system how many output items we produced.
         if(status==0){
+            if(d_rotate_nonce){
+                // Store first bit
+                d_nonce[0] = 0b00000000;
+                unsigned char store_bit = 0b10000000&d_nonce[0]; // FIXME: not final 
+                
+                // Shift left char array and add stored bit at the end // FIXME: check this implementation!
+                for(int k=0; k<crypto_stream_NONCEBYTES; k++) d_nonce[k] = d_nonce[k] << 1;
+                if(store_bit==0) d_nonce[crypto_stream_NONCEBYTES-1] = d_nonce[crypto_stream_NONCEBYTES-1]&0b00000000;
+                else d_nonce[crypto_stream_NONCEBYTES-1] = d_nonce[crypto_stream_NONCEBYTES-1]|0b00000001;
+            }
+            
             return ninput_items[0];
         }
         else{

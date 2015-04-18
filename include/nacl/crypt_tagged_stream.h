@@ -45,7 +45,7 @@ namespace gr {
        * class. nacl::crypt_tagged_stream::make is the public interface for
        * creating new instances.
        */
-      static sptr make(std::string key, std::string nonce, const std::string& len_key="packet_len");
+      static sptr make(std::string key, std::string nonce, bool rotate_nonce=false, const std::string& len_key="packet_len");
     };
 
   } // namespace nacl

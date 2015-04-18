@@ -33,14 +33,15 @@ class qa_crypt_tagged_stream (gr_unittest.TestCase):
     def test_001_t (self):
         # set up fg
         data = [ord('t'),ord('e'),ord('s'),ord('t'),ord('#')]*8
-        packet_len = len(data)/2
+        packet_len = len(data)/8
         key = "12345678123456781234567812345678"
         nonce = "abcdefghabcdefghabcdefgh"
+        rotate_nonce = True
         
         src = blocks.vector_source_b(data)
         s2ts = blocks.stream_to_tagged_stream(1,1,packet_len,"packet_len")
-        encrypt = nacl.crypt_tagged_stream(key,nonce)
-        decrypt = nacl.crypt_tagged_stream(key,nonce)
+        encrypt = nacl.crypt_tagged_stream(key,nonce,rotate_nonce)
+        decrypt = nacl.crypt_tagged_stream(key,nonce,rotate_nonce)
         sink_encrypt = blocks.vector_sink_b()
         sink_decrypt = blocks.vector_sink_b()
         
@@ -66,7 +67,6 @@ class qa_crypt_tagged_stream (gr_unittest.TestCase):
         data_out =  sink_decrypt.data()
         for k in range(len(data)):
             self.assertEqual(data[k],data_out[k])
-
 
 if __name__ == '__main__':
     gr_unittest.run(qa_crypt_tagged_stream)#, "qa_crypt_tagged_stream.xml")
