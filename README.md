@@ -1,4 +1,4 @@
-gr-nacl
+gr-nacl: GNU Radio data encryption module
 ========
 GNU Radio module for data encryption using NaCl library  
 
