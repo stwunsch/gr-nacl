@@ -32,11 +32,41 @@ class qa_crypt_tagged_stream (gr_unittest.TestCase):
 
     def test_001_t (self):
         # set up fg
+        data = [ord('t'),ord('e'),ord('s'),ord('t'),ord('#')]*8
+        packet_len = len(data)/2
+        key = "12345678123456781234567812345678"
+        nonce = "abcdefghabcdefghabcdefgh"
         
+        src = blocks.vector_source_b(data)
+        s2ts = blocks.stream_to_tagged_stream(1,1,packet_len,"packet_len")
+        encrypt = nacl.crypt_tagged_stream(key,nonce)
+        decrypt = nacl.crypt_tagged_stream(key,nonce)
+        sink_encrypt = blocks.vector_sink_b()
+        sink_decrypt = blocks.vector_sink_b()
+        
+        self.tb.connect(src,s2ts,encrypt,decrypt,sink_decrypt)
+        self.tb.connect(encrypt,sink_encrypt)
         
         self.tb.run ()
+        # print data
+        print "INPUT DATA"
+        for k in range(len(data)):
+            print chr(data[k]),
+        print
+        print "INPUT DATA ENCRYPTED"
+        for k in range(len(sink_encrypt.data())):
+            print chr(sink_encrypt.data()[k]),
+        print
+        print "OUTPUT DATA (EQUALS INPUT DATA ENCRYPTED AND DECRYPTED)"
+        for k in range(len(sink_decrypt.data())):
+            print chr(sink_decrypt.data()[k]),
+        print
+        
         # check data
+        data_out =  sink_decrypt.data()
+        for k in range(len(data)):
+            self.assertEqual(data[k],data_out[k])
 
 
 if __name__ == '__main__':
-    gr_unittest.run(qa_crypt_tagged_stream, "qa_crypt_tagged_stream.xml")
+    gr_unittest.run(qa_crypt_tagged_stream)#, "qa_crypt_tagged_stream.xml")

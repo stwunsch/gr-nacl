@@ -17,14 +17,15 @@
   <param>
     <name>Packet length key</name>
     <key>len_key</key>
+    <value>"packet_len"</value>
     <type>string</type>
   </param>
   <sink>
     <name>in</name>
-    <type>raw</type>
+    <type>byte</type>
   </sink>
   <source>
     <name>out</name>
-    <type>raw</type>
+    <type>byte</type>
   </source>
 </block>

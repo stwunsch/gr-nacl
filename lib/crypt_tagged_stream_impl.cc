@@ -46,6 +46,20 @@ namespace gr {
     {
         d_key = new unsigned char[crypto_stream_KEYBYTES];
         d_nonce = new unsigned char[crypto_stream_NONCEBYTES];
+        
+        // Error-handling nonce and key sizes
+        if(key.size()!=crypto_stream_KEYBYTES){
+            std::cout << "Key size (needed/given): " << crypto_stream_KEYBYTES << "/" << key.size() << std::endl;
+            throw std::runtime_error("Wrong key size.");
+        }
+        if(nonce.size()!=crypto_stream_NONCEBYTES){
+            std::cout << "Nonce size (needed/given): " << crypto_stream_NONCEBYTES << "/" << nonce.size() << std::endl;
+            throw std::runtime_error("Wrong nonce size.");
+        }
+        
+        // Copy nonce and key from string to unsigend char array
+        for(int k=0; k<crypto_stream_KEYBYTES; k++) d_key[k] = (uint8_t)key[k];
+        for(int k=0; k<crypto_stream_NONCEBYTES; k++) d_nonce[k] = (uint8_t)nonce[k];
     }
 
     /*
