@@ -3,7 +3,7 @@ gr-nacl
 GNU Radio module for data encryption using NaCl library  
 
 **Features**  
-The gr-nacl module for GNU Radio provides functionality from the NaCl library implemented with the fork libsodium. This contains public-key and secret-key encryption. The difference is explained, e.g., on Wikipedia [0]. The implementation is based on encryption of messages, which are passed in GNU Radio via the message system. Check out the GNU Radio documentation for further information [1]. Furthermore, a byte stream encryption method via tagged streams is implemented.
+The gr-nacl module for GNU Radio provides functionality from the NaCl crypto library implemented with the fork libsodium (see section 'Dependencies' for more information). This contains public-key and secret-key encryption. The difference is explained, e.g., on Wikipedia [0]. The implementation is based on encryption of messages, which are passed in GNU Radio via the message system. Check out the GNU Radio documentation for further information [1]. Furthermore, a byte stream encryption method via tagged streams is implemented.
 
 The functionality can be tested with the example flowgraphs for GNU Radio Companion at the subfolder examples/ or directly with the provided test-cases for ctest.
 
@@ -26,7 +26,7 @@ GNU Radio 3.7.6.1
 The NaCl (pronounced 'salt') crypto library [2] by Daniel J. Bernstein, Tanja Lange and Peter Schwabe has a well maintained fork called 'libsodium' [3]. Follow the instructions to build and install it.
 
 `git clone https://github.com/jedisct1/libsodium.git` // clone libsodium  
-`cd libsodium`  
+`cd libsodium/`  
 `./autogen.sh` // build libsodium  
 `./configure`  
 `make`  
