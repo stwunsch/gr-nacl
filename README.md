@@ -8,7 +8,7 @@ The gr-nacl module for GNU Radio provides functionality from the NaCl crypto lib
 The functionality can be tested with the example flowgraphs for GNU Radio Companion at the subfolder examples/ or directly with the provided test-cases for ctest.
 
 **Install guide**  
-Change to any folder in your home directory and enter following commands in your terminal.
+Change to any folder in your home directory and enter following commands in your terminal. Check out the section 'Dependencies' first.
 
 `git clone https://github.com/stwunsch/gr-nacl.git` // clone this repository  
 `cd gr-nacl/`  
