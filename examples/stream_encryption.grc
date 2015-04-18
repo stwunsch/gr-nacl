@@ -69,33 +69,6 @@
     <key>variable</key>
     <param>
       <key>id</key>
-      <value>samp_rate</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>32000</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(10, 170)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>id</key>
       <value>packet_len</value>
     </param>
     <param>
@@ -120,101 +93,26 @@
     </param>
   </block>
   <block>
-    <key>analog_random_source_x</key>
+    <key>variable</key>
     <param>
       <key>id</key>
-      <value>analog_random_source_x_0</value>
+      <value>samp_rate</value>
     </param>
     <param>
       <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
-      <key>type</key>
-      <value>byte</value>
-    </param>
-    <param>
-      <key>min</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>max</key>
-      <value>255</value>
-    </param>
-    <param>
-      <key>num_samps</key>
-      <value>packet_len</value>
-    </param>
-    <param>
-      <key>repeat</key>
-      <value>False</value>
+      <key>value</key>
+      <value>32000</value>
     </param>
     <param>
       <key>alias</key>
       <value></value>
     </param>
     <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
       <key>_coordinate</key>
-      <value>(24, 379)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_head</key>
-    <param>
-      <key>id</key>
-      <value>blocks_head_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>byte</value>
-    </param>
-    <param>
-      <key>num_items</key>
-      <value>packet_len</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(224, 403)</value>
+      <value>(10, 170)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -316,6 +214,147 @@
     </param>
   </block>
   <block>
+    <key>blocks_file_sink</key>
+    <param>
+      <key>id</key>
+      <value>blocks_file_sink_0_0_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>file</key>
+      <value>input.example</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>byte</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>unbuffered</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>append</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(688, 387)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_file_sink</key>
+    <param>
+      <key>id</key>
+      <value>blocks_file_sink_0_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>file</key>
+      <value>input_encrypted.example</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>byte</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>unbuffered</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>append</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(688, 499)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_file_sink</key>
+    <param>
+      <key>id</key>
+      <value>blocks_file_sink_0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>file</key>
+      <value>input_decrypted.example</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>byte</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>unbuffered</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>append</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(688, 619)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
     <key>blocks_stream_to_tagged_stream</key>
     <param>
       <key>id</key>
@@ -367,10 +406,10 @@
     </param>
   </block>
   <block>
-    <key>blocks_file_sink</key>
+    <key>blocks_file_source</key>
     <param>
       <key>id</key>
-      <value>blocks_file_sink_0_0_0</value>
+      <value>blocks_file_source_0</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -378,23 +417,19 @@
     </param>
     <param>
       <key>file</key>
-      <value>input.example</value>
+      <value>"input.file"</value>
     </param>
     <param>
       <key>type</key>
       <value>byte</value>
     </param>
     <param>
+      <key>repeat</key>
+      <value>True</value>
+    </param>
+    <param>
       <key>vlen</key>
       <value>1</value>
-    </param>
-    <param>
-      <key>unbuffered</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>append</key>
-      <value>False</value>
     </param>
     <param>
       <key>alias</key>
@@ -405,8 +440,16 @@
       <value></value>
     </param>
     <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
       <key>_coordinate</key>
-      <value>(688, 387)</value>
+      <value>(48, 395)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -414,34 +457,26 @@
     </param>
   </block>
   <block>
-    <key>blocks_file_sink</key>
+    <key>blocks_head</key>
     <param>
       <key>id</key>
-      <value>blocks_file_sink_0_0</value>
+      <value>blocks_head_0</value>
     </param>
     <param>
       <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
-      <key>file</key>
-      <value>input_encrypted.example</value>
-    </param>
-    <param>
       <key>type</key>
       <value>byte</value>
     </param>
     <param>
+      <key>num_items</key>
+      <value>packet_len*20</value>
+    </param>
+    <param>
       <key>vlen</key>
       <value>1</value>
-    </param>
-    <param>
-      <key>unbuffered</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>append</key>
-      <value>False</value>
     </param>
     <param>
       <key>alias</key>
@@ -452,73 +487,22 @@
       <value></value>
     </param>
     <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
       <key>_coordinate</key>
-      <value>(688, 499)</value>
+      <value>(208, 403)</value>
     </param>
     <param>
       <key>_rotation</key>
       <value>0</value>
     </param>
   </block>
-  <block>
-    <key>blocks_file_sink</key>
-    <param>
-      <key>id</key>
-      <value>blocks_file_sink_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>file</key>
-      <value>input_decrypted.example</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>byte</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>unbuffered</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>append</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(688, 619)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <connection>
-    <source_block_id>analog_random_source_x_0</source_block_id>
-    <sink_block_id>blocks_head_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_head_0</source_block_id>
-    <sink_block_id>blocks_stream_to_tagged_stream_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
   <connection>
     <source_block_id>nacl_crypt_tagged_stream_0</source_block_id>
     <sink_block_id>nacl_crypt_tagged_stream_0_0</sink_block_id>
@@ -546,6 +530,18 @@
   <connection>
     <source_block_id>blocks_stream_to_tagged_stream_0</source_block_id>
     <sink_block_id>blocks_file_sink_0_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_file_source_0</source_block_id>
+    <sink_block_id>blocks_head_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_head_0</source_block_id>
+    <sink_block_id>blocks_stream_to_tagged_stream_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
