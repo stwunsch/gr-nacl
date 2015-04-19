@@ -8,7 +8,7 @@ The gr-nacl module for GNU Radio provides functionality from the NaCl crypto lib
 The functionality can be tested with the example flowgraphs for GNU Radio Companion at the subfolder examples/ or directly with the provided test-cases for ctest.
 
 **Install guide**  
-Change to any folder in your home directory and enter following commands in your terminal. Check out the section 'Dependencies' first.
+Change to any folder in your home directory and enter following commands in your terminal. Check out the section 'Dependency' first. As well, you can install GNU Radio with PyBOMBS and use the provided install recipe for gr-nacl. The recipe builds and installs the dependency automatically.
 
 `git clone https://github.com/stwunsch/gr-nacl.git` // clone this repository  
 `cd gr-nacl/`  
@@ -22,7 +22,7 @@ Change to any folder in your home directory and enter following commands in your
 **Development platform**  
 GNU Radio 3.7.6.1  
 
-**Dependencies**  
+**Dependency**  
 The NaCl (pronounced 'salt') crypto library [2] by Daniel J. Bernstein, Tanja Lange and Peter Schwabe has a well maintained fork called 'libsodium' [3]. Follow the instructions to build and install it.
 
 `git clone https://github.com/jedisct1/libsodium.git` // clone libsodium  
