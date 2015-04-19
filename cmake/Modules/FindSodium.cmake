@@ -2,7 +2,7 @@ find_package(PkgConfig)
 pkg_check_modules(PC_SODIUM QUIET libsodium)
 
 find_path(
-    SODIUM_INCLUDE_DIR
+    SODIUM_INCLUDE_DIRS
     NAMES sodium.h
     HINTS ${PC_SODIUM_INCLUDEDIR}
           ${PC_SODIUM_INCLUDE_DIRS}
@@ -10,19 +10,19 @@ find_path(
 )
 
 find_library(
-    SODIUM_LIBRARY
+    SODIUM_LIBRARIES
     NAMES libsodium.so
     HINTS ${PC_LIBXML_LIBDIR}
           ${PC_LIBXML_LIBRARY_DIRS}
 )
 
-#message(WARNING "SODIUM INCLUDE " ${SODIUM_INCLUDE_DIR})
-#message(WARNING "SODIUM LIBRARY " ${SODIUM_LIBRARY})
+#message(WARNING "SODIUM INCLUDE " ${SODIUM_INCLUDE_DIRS})
+#message(WARNING "SODIUM LIBRARY " ${SODIUM_LIBRARIES})
 
-if(SODIUM_LIBRARY AND SODIUM_INCLUDE_DIR)
+if(SODIUM_LIBRARIES AND SODIUM_INCLUDE_DIRS)
     include(FindPackageHandleStandardArgs)
-    find_package_handle_standard_args(SODIUM DEFAULT_MSG SODIUM_LIBRARY SODIUM_INCLUDE_DIR)
-    mark_as_advanced(SODIUM_LIBRARY SODIUM_INCLUDE_DIR)
+    find_package_handle_standard_args(SODIUM DEFAULT_MSG SODIUM_LIBRARIES SODIUM_INCLUDE_DIRS)
+    mark_as_advanced(SODIUM_LIBRARIES SODIUM_INCLUDE_DIRS)
 else()
     message(FATAL_ERROR "Sodium is required, but was not found.")
 endif()
