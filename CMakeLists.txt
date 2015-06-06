@@ -22,7 +22,9 @@
 ########################################################################
 cmake_minimum_required(VERSION 2.6)
 project(gr-nacl CXX C)
-include_directories(/opt/local/include)
+if(APPLE)
+    include_directories(/opt/local/include)
+endif(APPLE)
 enable_testing()
 
 #select the release build type by default to get optimization flags

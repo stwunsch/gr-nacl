@@ -1,22 +1,20 @@
 gr-nacl: GNU Radio data encryption module
 ========
 GNU Radio module for data encryption using NaCl library  
-**MAC OS X Setup**
-This is a fork of the original repo created by Stefan Wunsch. It was altered to compile under MAC OS X with GnuRadio installed via Macports. To install, follow the altered Install guide.
 
 **Features**  
 The gr-nacl module for GNU Radio provides functionality from the NaCl crypto library implemented with the fork libsodium (see section 'Dependency' for more information). This contains public-key and secret-key encryption. The difference is explained, e.g., on Wikipedia [0]. The implementation is based on encryption of messages, which are passed in GNU Radio via the message system. Check out the GNU Radio documentation for further information [1]. Furthermore, a byte stream encryption method via tagged streams is implemented.
 
 The functionality can be tested with the example flowgraphs for GNU Radio Companion at the subfolder examples/ or directly with the provided test-cases for ctest.
 
-**Install guide**  
+**Install guide (Linux)**  
 Change to any folder in your home directory and enter following commands in your terminal. Check out the section 'Dependency' first. As well, you can install GNU Radio with PyBOMBS and use the provided install recipe for gr-nacl. The recipe builds and installs the dependency automatically.
 
 `git clone https://github.com/stwunsch/gr-nacl.git` // clone this repository  
 `cd gr-nacl/`  
 `mkdir build` // make build folder  
 `cd build/`  
-`cmake -DCMAKE_INSTALL_PREFIX:PATH=/opt/local  ../` // build makefiles  
+`cmake ../` // build makefiles  
 `make` // build toolbox  
 `ctest` // run tests, check if all have passed, the option -V provides an extended output  
 `sudo make install` // install toolbox
@@ -33,6 +31,19 @@ The NaCl (pronounced 'salt') crypto library [2] by Daniel J. Bernstein, Tanja La
 `./configure`  
 `make`  
 `sudo make install` // install libsodium
+
+**Install guide (Mac OS X)**
+The following commands will work if you have installed GnuRadio and libsodium via Macports.
+Change to any folder in your home directory and enter following commands in your terminal.
+
+`git clone https://github.com/stwunsch/gr-nacl.git` // clone this repository  
+`cd gr-nacl/`  
+`mkdir build` // make build folder  
+`cd build/`  
+`cmake -DCMAKE_INSTALL_PREFIX:PATH=/opt/local  ../` // build makefiles  
+`make` // build toolbox  
+`ctest` // run tests, check if all have passed, the option -V provides an extended output  
+`sudo make install` // install toolbox
 
 **Contact**  
 Stefan Wunsch  
