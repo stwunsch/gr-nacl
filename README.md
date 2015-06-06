@@ -1,6 +1,8 @@
 gr-nacl: GNU Radio data encryption module
 ========
 GNU Radio module for data encryption using NaCl library  
+**MAC OS X Setup**
+This is a fork of the original repo created by Stefan Wunsch. It was altered to compile under MAC OS X with GnuRadio installed via Macports. To install, follow the altered Install guide.
 
 **Features**  
 The gr-nacl module for GNU Radio provides functionality from the NaCl crypto library implemented with the fork libsodium (see section 'Dependency' for more information). This contains public-key and secret-key encryption. The difference is explained, e.g., on Wikipedia [0]. The implementation is based on encryption of messages, which are passed in GNU Radio via the message system. Check out the GNU Radio documentation for further information [1]. Furthermore, a byte stream encryption method via tagged streams is implemented.
@@ -14,7 +16,7 @@ Change to any folder in your home directory and enter following commands in your
 `cd gr-nacl/`  
 `mkdir build` // make build folder  
 `cd build/`  
-`cmake ../` // build makefiles  
+`cmake -DCMAKE_INSTALL_PREFIX:PATH=/opt/local  ../` // build makefiles  
 `make` // build toolbox  
 `ctest` // run tests, check if all have passed, the option -V provides an extended output  
 `sudo make install` // install toolbox
