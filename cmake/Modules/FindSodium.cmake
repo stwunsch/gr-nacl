@@ -11,7 +11,7 @@ find_path(
 
 find_library(
     SODIUM_LIBRARIES
-    NAMES libsodium.so
+    NAMES libsodium.dylib
     HINTS ${PC_LIBXML_LIBDIR}
           ${PC_LIBXML_LIBRARY_DIRS}
 )
