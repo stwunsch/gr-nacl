@@ -32,7 +32,7 @@ The NaCl (pronounced 'salt') crypto library [2] by Daniel J. Bernstein, Tanja La
 `make`  
 `sudo make install` // install libsodium
 
-**Install guide (Mac OS X)**
+**Install guide (Mac OS X)**  
 The following commands will work if you have installed GnuRadio and libsodium via Macports.
 Change to any folder in your home directory and enter following commands in your terminal.
 
