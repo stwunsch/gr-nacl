@@ -42,7 +42,7 @@ Change to any folder in your home directory and enter following commands in your
 `cd build/`  
 `cmake -DCMAKE_INSTALL_PREFIX:PATH=/opt/local  ../` // build makefiles  
 `make` // build toolbox  
-`ctest` // run tests, check if all have passed, the option -V provides an extended output. This actually did not work for me
+`ctest` // run tests, check if all have passed, the option -V provides an extended output. This actually did not work for me  
 `sudo make install` // install toolbox
 
 **Contact**  
