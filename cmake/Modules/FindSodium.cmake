@@ -9,12 +9,21 @@ find_path(
     PATH_SUFFIXES sodium
 )
 
-find_library(
-    SODIUM_LIBRARIES
-    NAMES libsodium.so
-    HINTS ${PC_LIBXML_LIBDIR}
-          ${PC_LIBXML_LIBRARY_DIRS}
-)
+if(APPLE)
+    find_library(
+        SODIUM_LIBRARIES
+        NAMES libsodium.dylib
+        HINTS ${PC_LIBXML_LIBDIR}
+              ${PC_LIBXML_LIBRARY_DIRS}
+    )
+else(APPLE)
+    find_library(
+        SODIUM_LIBRARIES
+        NAMES libsodium.so
+        HINTS ${PC_LIBXML_LIBDIR}
+              ${PC_LIBXML_LIBRARY_DIRS}
+    )
+endif(APPLE)
 
 #message(WARNING "SODIUM INCLUDE " ${SODIUM_INCLUDE_DIRS})
 #message(WARNING "SODIUM LIBRARY " ${SODIUM_LIBRARIES})
