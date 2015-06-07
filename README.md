@@ -19,7 +19,21 @@ Change to any folder in your home directory and enter following commands in your
 `ctest` // run tests, check if all have passed, the option -V provides an extended output  
 `sudo make install` // install toolbox
 
+**Install guide (Mac OS X)**  
+The following commands will work if you have installed Gnuradio and libsodium via Macports.
+Change to any folder in your home directory and enter following commands in your terminal.
+
+`git clone https://github.com/stwunsch/gr-nacl.git` // clone this repository  
+`cd gr-nacl/`  
+`mkdir build` // make build folder  
+`cd build/`  
+`cmake -DCMAKE_INSTALL_PREFIX:PATH=/opt/local  ../` // build makefiles  
+`make` // build toolbox  
+`ctest` // run tests, check if all have passed, the option -V provides an extended output. This actually did not work for me  
+`sudo make install` // install toolbox
+
 **Development platform**  
+Ubuntu 15.04  
 GNU Radio 3.7.6.1  
 
 **Dependency**  
@@ -31,19 +45,6 @@ The NaCl (pronounced 'salt') crypto library [2] by Daniel J. Bernstein, Tanja La
 `./configure`  
 `make`  
 `sudo make install` // install libsodium
-
-**Install guide (Mac OS X)**  
-The following commands will work if you have installed GnuRadio and libsodium via Macports.
-Change to any folder in your home directory and enter following commands in your terminal.
-
-`git clone https://github.com/stwunsch/gr-nacl.git` // clone this repository  
-`cd gr-nacl/`  
-`mkdir build` // make build folder  
-`cd build/`  
-`cmake -DCMAKE_INSTALL_PREFIX:PATH=/opt/local  ../` // build makefiles  
-`make` // build toolbox  
-`ctest` // run tests, check if all have passed, the option -V provides an extended output. This actually did not work for me  
-`sudo make install` // install toolbox
 
 **Contact**  
 Stefan Wunsch  
