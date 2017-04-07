@@ -97,12 +97,13 @@ namespace gr {
             // decrypt message
             __GR_VLA(unsigned char, data_char, data.size());
             __GR_VLA(unsigned char, nonce_char, nonce.size());
+            size_t data_char_sz = (sizeof(unsigned char) * data.size());
             for(int k=0; k<data.size(); k++) data_char[k] = (unsigned char)data[k];
             for(int k=0; k<nonce.size(); k++) nonce_char[k] = (unsigned char)nonce[k];
-            size_t msg_len = sizeof(data_char)-crypto_secretbox_MACBYTES;
+            size_t msg_len = data_char_sz -crypto_secretbox_MACBYTES;
             __GR_VLA(unsigned char, msg_decrypted, msg_len);
             
-            int msg_status = crypto_secretbox_open_easy(msg_decrypted, data_char, sizeof(data_char), nonce_char, d_key);
+            int msg_status = crypto_secretbox_open_easy(msg_decrypted, data_char, data_char_sz, nonce_char, d_key);
             
             // check whether msg is successfully decrypted
             if(msg_status==0){
