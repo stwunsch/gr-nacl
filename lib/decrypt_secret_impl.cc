@@ -52,7 +52,7 @@ namespace gr {
         char c;
         
         std::ifstream file_key(filename_key.c_str());
-        if(not(file_key.is_open())) throw std::runtime_error("Key file not found.");
+        if(!(file_key.is_open())) throw std::runtime_error("Key file not found.");
         for(int k=0; k<crypto_secretbox_KEYBYTES; k++){
             file_key.get(c);
             d_key[k] = c;

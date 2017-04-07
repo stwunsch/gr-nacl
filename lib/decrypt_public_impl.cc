@@ -55,7 +55,7 @@ namespace gr {
         char c;
         
         std::ifstream file_sk(filename_sk.c_str());
-        if(not(file_sk.is_open())) throw std::runtime_error("Secret-key file not found.");
+        if(!(file_sk.is_open())) throw std::runtime_error("Secret-key file not found.");
         for(int k=0; k<crypto_box_SECRETKEYBYTES; k++){
             file_sk.get(c);
             d_sk[k] = c;
@@ -63,7 +63,7 @@ namespace gr {
         file_sk.close();
         
         std::ifstream file_pk(filename_pk.c_str());
-        if(not(file_pk.is_open())) throw std::runtime_error("Public-key file not found.");
+        if(!(file_pk.is_open())) throw std::runtime_error("Public-key file not found.");
         for(int k=0; k<crypto_box_PUBLICKEYBYTES; k++){
             file_pk.get(c);
             d_pk[k] = c;
