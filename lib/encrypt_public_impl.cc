@@ -101,10 +101,10 @@ namespace gr {
             randombytes_buf(nonce, sizeof(nonce));
             
             // encrypt message
-            unsigned char data_char[data.size()];
+            __GR_VLA(unsigned char, data_char, data.size());
             for(int k=0; k<data.size(); k++) data_char[k] = (unsigned char)data[k];
             size_t ciphertext_len = crypto_box_MACBYTES + sizeof(data_char);
-            unsigned char ciphertext[ciphertext_len];
+            __GR_VLA(unsigned char, ciphertext, ciphertext_len);
             crypto_box_easy(ciphertext, data_char, sizeof(data_char), nonce, d_pk, d_sk);
             
             // repack msg with symbol 'msg_encrypted' and nonce with symbol 'nonce'

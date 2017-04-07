@@ -115,12 +115,12 @@ namespace gr {
         // encrypt data
         if(msg_encrypted_found&&nonce_found){
             // decrypt message
-            unsigned char data_char[data.size()];
-            unsigned char nonce_char[nonce.size()];
+            __GR_VLA(unsigned char, data_char, data.size());
+            __GR_VLA(unsigned char, nonce_char, nonce.size());
             for(int k=0; k<data.size(); k++) data_char[k] = (unsigned char)data[k];
             for(int k=0; k<nonce.size(); k++) nonce_char[k] = (unsigned char)nonce[k];
             size_t msg_len = sizeof(data_char)-crypto_box_MACBYTES;
-            unsigned char msg_decrypted[msg_len];
+            __GR_VLA(unsigned char, msg_decrypted, msg_len);
             
             int msg_status = crypto_box_open_easy(msg_decrypted, data_char, sizeof(data_char), nonce_char, d_pk, d_sk);
             
