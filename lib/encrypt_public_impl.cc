@@ -55,7 +55,7 @@ namespace gr {
         char c;
         
         std::ifstream file_sk(filename_sk.c_str());
-        if(not(file_sk.is_open())) throw std::runtime_error("Secret-key file not found.");
+        if(!(file_sk.is_open())) throw std::runtime_error("Secret-key file not found.");
         for(int k=0; k<crypto_box_SECRETKEYBYTES; k++){
             file_sk.get(c);
             d_sk[k] = c;
@@ -63,7 +63,7 @@ namespace gr {
         file_sk.close();
         
         std::ifstream file_pk(filename_pk.c_str());
-        if(not(file_pk.is_open())) throw std::runtime_error("Public-key file not found.");
+        if(!(file_pk.is_open())) throw std::runtime_error("Public-key file not found.");
         for(int k=0; k<crypto_box_PUBLICKEYBYTES; k++){
             file_pk.get(c);
             d_pk[k] = c;
@@ -101,11 +101,12 @@ namespace gr {
             randombytes_buf(nonce, sizeof(nonce));
             
             // encrypt message
-            unsigned char data_char[data.size()];
+            __GR_VLA(unsigned char, data_char, data.size());
+            size_t data_char_sz = (sizeof(unsigned char) * data.size());
             for(int k=0; k<data.size(); k++) data_char[k] = (unsigned char)data[k];
-            size_t ciphertext_len = crypto_box_MACBYTES + sizeof(data_char);
-            unsigned char ciphertext[ciphertext_len];
-            crypto_box_easy(ciphertext, data_char, sizeof(data_char), nonce, d_pk, d_sk);
+            size_t ciphertext_len = crypto_box_MACBYTES + data_char_sz;
+            __GR_VLA(unsigned char, ciphertext, ciphertext_len);
+            crypto_box_easy(ciphertext, data_char, data_char_sz, nonce, d_pk, d_sk);
             
             // repack msg with symbol 'msg_encrypted' and nonce with symbol 'nonce'
             std::vector<uint8_t> msg_encrypted; msg_encrypted.resize(ciphertext_len);

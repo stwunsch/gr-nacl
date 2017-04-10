@@ -52,7 +52,7 @@ namespace gr {
         char c;
         
         std::ifstream file_key(filename_key.c_str());
-        if(not(file_key.is_open())) throw std::runtime_error("Key file not found.");
+        if(!(file_key.is_open())) throw std::runtime_error("Key file not found.");
         for(int k=0; k<crypto_secretbox_KEYBYTES; k++){
             file_key.get(c);
             d_key[k] = c;
@@ -95,14 +95,15 @@ namespace gr {
         // encrypt data
         if(msg_encrypted_found&&nonce_found){
             // decrypt message
-            unsigned char data_char[data.size()];
-            unsigned char nonce_char[nonce.size()];
+            __GR_VLA(unsigned char, data_char, data.size());
+            __GR_VLA(unsigned char, nonce_char, nonce.size());
+            size_t data_char_sz = (sizeof(unsigned char) * data.size());
             for(int k=0; k<data.size(); k++) data_char[k] = (unsigned char)data[k];
             for(int k=0; k<nonce.size(); k++) nonce_char[k] = (unsigned char)nonce[k];
-            size_t msg_len = sizeof(data_char)-crypto_secretbox_MACBYTES;
-            unsigned char msg_decrypted[msg_len];
+            size_t msg_len = data_char_sz -crypto_secretbox_MACBYTES;
+            __GR_VLA(unsigned char, msg_decrypted, msg_len);
             
-            int msg_status = crypto_secretbox_open_easy(msg_decrypted, data_char, sizeof(data_char), nonce_char, d_key);
+            int msg_status = crypto_secretbox_open_easy(msg_decrypted, data_char, data_char_sz, nonce_char, d_key);
             
             // check whether msg is successfully decrypted
             if(msg_status==0){
