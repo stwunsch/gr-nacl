@@ -19,5 +19,6 @@
 # Boston, MA 02110-1301, USA.
 
 install(FILES
+    nacl_decrypt_public.block.yml
     nacl_generate_keypair.block.yml DESTINATION share/gnuradio/grc/blocks
 )

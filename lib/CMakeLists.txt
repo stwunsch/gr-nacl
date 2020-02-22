@@ -24,6 +24,7 @@
 include(GrPlatform) #define LIB_SUFFIX
 
 list(APPEND nacl_sources
+    decrypt_public_impl.cc
     generate_keypair_impl.cc
 )
 

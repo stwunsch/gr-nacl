@@ -23,5 +23,6 @@
 ########################################################################
 install(FILES
     api.h
+    decrypt_public.h
     generate_keypair.h DESTINATION include/nacl
 )
