@@ -33,10 +33,11 @@ if(NOT nacl_sources)
 endif(NOT nacl_sources)
 
 add_library(gnuradio-nacl SHARED ${nacl_sources})
-target_link_libraries(gnuradio-nacl gnuradio::gnuradio-runtime)
+target_link_libraries(gnuradio-nacl gnuradio::gnuradio-runtime sodium)
 target_include_directories(gnuradio-nacl
     PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include>
     PUBLIC $<INSTALL_INTERFACE:include>
+    PUBLIC ${SODIUM_INCLUDE_DIRS}
   )
 set_target_properties(gnuradio-nacl PROPERTIES DEFINE_SYMBOL "gnuradio_nacl_EXPORTS")
 

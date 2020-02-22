@@ -125,6 +125,7 @@ endif(APPLE)
 # Find gnuradio build dependencies
 ########################################################################
 find_package(Doxygen)
+find_package(Sodium REQUIRED)
 
 ########################################################################
 # Setup doxygen option
