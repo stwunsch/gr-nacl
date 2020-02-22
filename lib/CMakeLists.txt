@@ -24,6 +24,7 @@
 include(GrPlatform) #define LIB_SUFFIX
 
 list(APPEND nacl_sources
+    generate_keypair_impl.cc
 )
 
 set(nacl_sources "${nacl_sources}" PARENT_SCOPE)

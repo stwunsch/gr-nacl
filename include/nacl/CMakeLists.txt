@@ -23,5 +23,5 @@
 ########################################################################
 install(FILES
     api.h
-    DESTINATION include/nacl
+    generate_keypair.h DESTINATION include/nacl
 )

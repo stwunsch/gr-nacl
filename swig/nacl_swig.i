@@ -8,5 +8,8 @@
 %include "nacl_swig_doc.i"
 
 %{
+#include "nacl/generate_keypair.h"
 %}
 
+%include "nacl/generate_keypair.h"
+GR_SWIG_BLOCK_MAGIC2(nacl, generate_keypair);
