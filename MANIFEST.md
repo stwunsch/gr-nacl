@@ -1,16 +1,17 @@
-title: gr-nacl
-brief: GNU Radio module for data encryption using NaCl library
-tags:
-  - encryption
+title: The NACL OOT Module
+brief: Short description of gr-nacl
+tags: # Tags are arbitrary, but look at CGRAN what other authors are using
+  - sdr
 author:
-  - Stefan Wunsch <stefan.wunsch@student.kit.edu>
+  - Author Name <authors@email.address>
 copyright_owner:
-  - Stefan Wunsch
-dependencies:
-  - gnuradio 3.7.6.1
-  - libsodium
-repo: https://github.com/stwunsch/gr-nacl
-icon: https://openclipart.org/image/300px/svg_to_png/204662/encryption2.png
+  - Copyright Owner 1
+license:
+gr_supported_version: # Put a comma separated list of supported GR versions here
+#repo: # Put the URL of the repository here, or leave blank for default
+#website: <module_website> # If you have a separate project website, put it here
+#icon: <icon_url> # Put a URL to a square image here that will be used as an icon on CGRAN
 ---
-
-The gr-nacl module for GNU Radio provides functionality from the NaCl crypto library implemented with the fork libsodium. This contains public-key and secret-key encryption. The implementation is based on encryption of messages, which are passed in GNU Radio via the message system. Furthermore, a byte stream encryption method via tagged streams is implemented.
+A longer, multi-line description of gr-nacl.
+You may use some *basic* Markdown here.
+If left empty, it will try to find a README file instead.

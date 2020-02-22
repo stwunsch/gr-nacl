@@ -1,13 +1,4 @@
-Given examples:
+It is considered good practice to add examples in here to demonstrate the
+functionality of your OOT module. Python scripts, GRC flow graphs or other
+code can go here.
 
-1) Public-key encryption
-This means that the message is encrypted with the public-key of the addressee and signed with the private key of the sender. Decryption is done with the secret key of the addressee and the message is authenticated with the public key of the sender.
-All information is passed with the GNU Radio message system.
-
-2) Secret-key encryption
-The secret-key encryption is like encryption via password. A single key for sender and addressee is used for encryption.
-The information is passed like the public-key encryption via the message system.
-
-3) Stream encryption
-The stream encryption is done via a stream cipher. The stream cipher is generated with a nonce and a secret key. The nonce can be rotated after every data block.
-The information is passed as a tagged stream (see GNU Radio documentation).
