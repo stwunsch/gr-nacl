@@ -24,5 +24,6 @@
 install(FILES
     api.h
     decrypt_public.h
-    generate_keypair.h DESTINATION include/nacl
+    generate_keypair.h
+    crypt_tagged_stream.h DESTINATION include/nacl
 )
