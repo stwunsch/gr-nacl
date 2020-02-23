@@ -24,5 +24,6 @@ install(FILES
     nacl_crypt_tagged_stream.block.yml
     nacl_decrypt_secret.block.yml
     nacl_encrypt_public.block.yml
-    nacl_encrypt_secret.block.yml DESTINATION share/gnuradio/grc/blocks
+    nacl_encrypt_secret.block.yml
+    nacl_generate_key.block.yml DESTINATION share/gnuradio/grc/blocks
 )
