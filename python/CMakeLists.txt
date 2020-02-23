@@ -46,3 +46,4 @@ GR_ADD_TEST(qa_decrypt_public ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/q
 GR_ADD_TEST(qa_crypt_tagged_stream ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_crypt_tagged_stream.py)
 GR_ADD_TEST(qa_decrypt_secret ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_decrypt_secret.py)
 GR_ADD_TEST(qa_encrypt_public ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_encrypt_public.py)
+GR_ADD_TEST(qa_encrypt_secret ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_encrypt_secret.py)

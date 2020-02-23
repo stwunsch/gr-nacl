@@ -13,6 +13,7 @@
 #include "nacl/crypt_tagged_stream.h"
 #include "nacl/decrypt_secret.h"
 #include "nacl/encrypt_public.h"
+#include "nacl/encrypt_secret.h"
 %}
 
 %include "nacl/decrypt_public.h"
@@ -25,3 +26,5 @@ GR_SWIG_BLOCK_MAGIC2(nacl, crypt_tagged_stream);
 GR_SWIG_BLOCK_MAGIC2(nacl, decrypt_secret);
 %include "nacl/encrypt_public.h"
 GR_SWIG_BLOCK_MAGIC2(nacl, encrypt_public);
+%include "nacl/encrypt_secret.h"
+GR_SWIG_BLOCK_MAGIC2(nacl, encrypt_secret);
