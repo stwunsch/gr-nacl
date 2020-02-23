@@ -1,0 +1,27 @@
+pkgname=gr-nacl
+_gitname=gr-nacl
+pkgver=git
+pkgrel=1
+pkgdesc="GNU Radio module for data encryption using NaCl library"
+arch=('x86_64')
+license=('GPL')
+depends=('libsodium')
+makedepends=('git' 'cmake' 'make')
+optdepends=()
+source=("git://github.com/stwunsch/gr-nacl")
+md5sums=('SKIP')
+conflicts=()
+provides=()
+
+build() {
+  mkdir -p $_gitname/build
+  cd $_gitname/build
+  pwd
+  cmake ..
+  make -j4
+}
+
+package() {
+  cd "$srcdir/$_gitname/build"
+  make DESTDIR="$pkgdir" install
+}
