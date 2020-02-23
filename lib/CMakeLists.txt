@@ -28,6 +28,7 @@ list(APPEND nacl_sources
     generate_keypair_impl.cc
     crypt_tagged_stream_impl.cc
     decrypt_secret_impl.cc
+    encrypt_public_impl.cc
 )
 
 set(nacl_sources "${nacl_sources}" PARENT_SCOPE)
