@@ -4,11 +4,13 @@ tags:
   - encryption
 author:
   - Stefan Wunsch <stefan.wunsch@student.kit.edu>
+  - Sebastian Müller <gsenpo@gmail.com>
 copyright_owner:
   - Stefan Wunsch
 dependencies:
-  - gnuradio 3.7.6.1
+  - gnuradio 3.8
   - libsodium
+gr_supported_version: v3.7, v3.8
 repo: https://github.com/stwunsch/gr-nacl
 icon: https://openclipart.org/image/300px/svg_to_png/204662/encryption2.png
 ---

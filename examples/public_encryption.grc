@@ -1,397 +1,222 @@
-<?xml version='1.0' encoding='ASCII'?>
-<?grc format='1' created='3.7.6'?>
-<flow_graph>
-  <timestamp>Sun Apr  5 20:23:17 2015</timestamp>
-  <block>
-    <key>options</key>
-    <param>
-      <key>id</key>
-      <value>top_block</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>title</key>
-      <value></value>
-    </param>
-    <param>
-      <key>author</key>
-      <value></value>
-    </param>
-    <param>
-      <key>description</key>
-      <value></value>
-    </param>
-    <param>
-      <key>window_size</key>
-      <value>1280, 1024</value>
-    </param>
-    <param>
-      <key>generate_options</key>
-      <value>qt_gui</value>
-    </param>
-    <param>
-      <key>category</key>
-      <value>Custom</value>
-    </param>
-    <param>
-      <key>run_options</key>
-      <value>prompt</value>
-    </param>
-    <param>
-      <key>run</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>max_nouts</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>realtime_scheduling</key>
-      <value></value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(10, 10)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>variable</key>
-    <param>
-      <key>id</key>
-      <value>samp_rate</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>32000</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(8, 171)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>nacl_generate_keypair</key>
-    <param>
-      <key>id</key>
-      <value>nacl_generate_keypair_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>filename_sk</key>
-      <value>"secret.alice"</value>
-    </param>
-    <param>
-      <key>filename_pk</key>
-      <value>"public.alice"</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(104, 171)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>nacl_generate_keypair</key>
-    <param>
-      <key>id</key>
-      <value>nacl_generate_keypair_0_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>filename_sk</key>
-      <value>"secret.bob"</value>
-    </param>
-    <param>
-      <key>filename_pk</key>
-      <value>"public.bob"</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(280, 171)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_message_strobe</key>
-    <param>
-      <key>id</key>
-      <value>blocks_message_strobe_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>msg</key>
-      <value>pmt.list1(pmt.list2(pmt.string_to_symbol("msg_clear"),pmt.init_u8vector(4,[116,101,115,116])))</value>
-    </param>
-    <param>
-      <key>period</key>
-      <value>1000</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(96, 291)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>nacl_decrypt_public</key>
-    <param>
-      <key>id</key>
-      <value>nacl_decrypt_public_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>filename_pk</key>
-      <value>public.alice</value>
-    </param>
-    <param>
-      <key>filename_sk</key>
-      <value>secret.bob</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(88, 515)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>nacl_encrypt_public</key>
-    <param>
-      <key>id</key>
-      <value>nacl_encrypt_public_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>filename_pk</key>
-      <value>public.bob</value>
-    </param>
-    <param>
-      <key>filename_sk</key>
-      <value>secret.alice</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(88, 403)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_message_debug</key>
-    <param>
-      <key>id</key>
-      <value>blocks_message_debug_0_0_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(496, 416)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_message_debug</key>
-    <param>
-      <key>id</key>
-      <value>blocks_message_debug_0_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(496, 304)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_message_debug</key>
-    <param>
-      <key>id</key>
-      <value>blocks_message_debug_0</value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(496, 528)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-  </block>
-  <connection>
-    <source_block_id>nacl_encrypt_public_0</source_block_id>
-    <sink_block_id>nacl_decrypt_public_0</sink_block_id>
-    <source_key>Msg encrypted</source_key>
-    <sink_key>Msg encrypted</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>nacl_decrypt_public_0</source_block_id>
-    <sink_block_id>blocks_message_debug_0</sink_block_id>
-    <source_key>Msg decrypted</source_key>
-    <sink_key>print</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_message_strobe_0</source_block_id>
-    <sink_block_id>nacl_encrypt_public_0</sink_block_id>
-    <source_key>strobe</source_key>
-    <sink_key>Msg clear</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_message_strobe_0</source_block_id>
-    <sink_block_id>blocks_message_debug_0_0</sink_block_id>
-    <source_key>strobe</source_key>
-    <sink_key>print</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>nacl_encrypt_public_0</source_block_id>
-    <sink_block_id>blocks_message_debug_0_0_0</sink_block_id>
-    <source_key>Msg encrypted</source_key>
-    <sink_key>print</sink_key>
-  </connection>
-</flow_graph>
+options:
+  parameters:
+    author: ''
+    category: Custom
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: top_block
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: ''
+    window_size: 1280, 1024
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [10, 10]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: public_key_r
+  id: variable
+  parameters:
+    comment: ''
+    value: '"public.receiver"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [584, 12.0]
+    rotation: 0
+    state: true
+- name: public_key_s
+  id: variable
+  parameters:
+    comment: ''
+    value: '"public.sender"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [320, 12.0]
+    rotation: 0
+    state: true
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: '32000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 171]
+    rotation: 0
+    state: enabled
+- name: secret_key_r
+  id: variable
+  parameters:
+    comment: ''
+    value: '"secret.receiver"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [448, 12.0]
+    rotation: 0
+    state: true
+- name: secret_key_s
+  id: variable
+  parameters:
+    comment: ''
+    value: '"secret.sender"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [192, 12.0]
+    rotation: 0
+    state: true
+- name: blocks_message_debug_0
+  id: blocks_message_debug
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [568, 528.0]
+    rotation: 0
+    state: enabled
+- name: blocks_message_debug_0_0
+  id: blocks_message_debug
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [568, 304.0]
+    rotation: 0
+    state: enabled
+- name: blocks_message_debug_0_0_0
+  id: blocks_message_debug
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [568, 416.0]
+    rotation: 0
+    state: enabled
+- name: blocks_message_strobe_0
+  id: blocks_message_strobe
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    msg: pmt.string_to_symbol("msg_clear")
+    period: '1000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [96, 291]
+    rotation: 0
+    state: enabled
+- name: nacl_decrypt_public_0
+  id: nacl_decrypt_public
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    filename_pk: public_key_s
+    filename_sk: secret_key_r
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [88, 515]
+    rotation: 0
+    state: enabled
+- name: nacl_encrypt_public_0
+  id: nacl_encrypt_public
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    filename_pk: public_key_r
+    filename_sk: secret_key_s
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [88, 403]
+    rotation: 0
+    state: enabled
+- name: nacl_generate_keypair_0
+  id: nacl_generate_keypair
+  parameters:
+    alias: ''
+    comment: ''
+    filename_pk: public_key_s
+    filename_sk: secret_key_s
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [104, 171]
+    rotation: 0
+    state: enabled
+- name: nacl_generate_keypair_0_0
+  id: nacl_generate_keypair
+  parameters:
+    alias: ''
+    comment: ''
+    filename_pk: public_key_r
+    filename_sk: secret_key_r
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [280, 171]
+    rotation: 0
+    state: enabled
+
+connections:
+- [blocks_message_strobe_0, strobe, blocks_message_debug_0_0, print]
+- [blocks_message_strobe_0, strobe, nacl_encrypt_public_0, Msg clear]
+- [nacl_decrypt_public_0, Msg decrypted, blocks_message_debug_0, print]
+- [nacl_encrypt_public_0, Msg encrypted, blocks_message_debug_0_0_0, print]
+- [nacl_encrypt_public_0, Msg encrypted, nacl_decrypt_public_0, Msg encrypted]
+
+metadata:
+  file_format: 1
