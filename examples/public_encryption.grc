@@ -32,16 +32,28 @@ options:
     state: enabled
 
 blocks:
-- name: public_key
+- name: public_key_r
   id: variable
   parameters:
     comment: ''
-    value: '"public.key"'
+    value: '"public.receiver"'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [347, 28]
+    coordinate: [584, 12.0]
+    rotation: 0
+    state: true
+- name: public_key_s
+  id: variable
+  parameters:
+    comment: ''
+    value: '"public.sender"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [320, 12.0]
     rotation: 0
     state: true
 - name: samp_rate
@@ -56,16 +68,28 @@ blocks:
     coordinate: [8, 171]
     rotation: 0
     state: enabled
-- name: secret_key
+- name: secret_key_r
   id: variable
   parameters:
     comment: ''
-    value: '"secret.key"'
+    value: '"secret.receiver"'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [235, 28]
+    coordinate: [448, 12.0]
+    rotation: 0
+    state: true
+- name: secret_key_s
+  id: variable
+  parameters:
+    comment: ''
+    value: '"secret.sender"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [192, 12.0]
     rotation: 0
     state: true
 - name: blocks_message_debug_0
@@ -78,7 +102,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [496, 528]
+    coordinate: [568, 528.0]
     rotation: 0
     state: enabled
 - name: blocks_message_debug_0_0
@@ -91,7 +115,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [496, 304]
+    coordinate: [568, 304.0]
     rotation: 0
     state: enabled
 - name: blocks_message_debug_0_0_0
@@ -104,7 +128,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [496, 416]
+    coordinate: [568, 416.0]
     rotation: 0
     state: enabled
 - name: blocks_message_strobe_0
@@ -115,7 +139,7 @@ blocks:
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
-    msg: pmt.list1(pmt.list2(pmt.string_to_symbol("msg_clear"),pmt.init_u8vector(4,[116,101,115,116])))
+    msg: pmt.string_to_symbol("msg_clear")
     period: '1000'
   states:
     bus_sink: false
@@ -130,8 +154,8 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    filename_pk: public.alice
-    filename_sk: secret.bob
+    filename_pk: public_key_s
+    filename_sk: secret_key_r
     maxoutbuf: '0'
     minoutbuf: '0'
   states:
@@ -144,11 +168,11 @@ blocks:
 - name: nacl_encrypt_public_0
   id: nacl_encrypt_public
   parameters:
-    Filename public-key (receiver): public_key
-    Filename secret-key (sender): secret_key
     affinity: ''
     alias: ''
     comment: ''
+    filename_pk: public_key_r
+    filename_sk: secret_key_s
     maxoutbuf: '0'
     minoutbuf: '0'
   states:
@@ -161,10 +185,10 @@ blocks:
 - name: nacl_generate_keypair_0
   id: nacl_generate_keypair
   parameters:
-    Filename public-key: public_key
-    Filename secret-key: secret_key
     alias: ''
     comment: ''
+    filename_pk: public_key_s
+    filename_sk: secret_key_s
   states:
     bus_sink: false
     bus_source: false
@@ -175,10 +199,10 @@ blocks:
 - name: nacl_generate_keypair_0_0
   id: nacl_generate_keypair
   parameters:
-    Filename public-key: public_key
-    Filename secret-key: secret_key
     alias: ''
     comment: ''
+    filename_pk: public_key_r
+    filename_sk: secret_key_r
   states:
     bus_sink: false
     bus_source: false
