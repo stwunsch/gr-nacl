@@ -15,8 +15,8 @@ parameters:
 - id: key
   label: Key
   dtype: string
-- id: Nonce
-  label: nonce
+- id: nonce
+  label: Nonce
   dtype: string
 - id: rotate_nonce
   label: Rotate nonce

@@ -14,10 +14,10 @@ templates:
 parameters:
 - id: filename_pk
   label: Filename public-key (sender)
-  dtype: string
+  dtype: file_open
 - id: filename_sk
   label: Filename secret-key (receiver)
-  dtype: string
+  dtype: file_open
 
 #  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
 #  Keys include:

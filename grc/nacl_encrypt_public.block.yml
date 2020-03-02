@@ -12,12 +12,12 @@ templates:
 #     * label (label shown in the GUI)
 #     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
 parameters:
-- id: Filename public-key (receiver)
-  label: filename_pk
-  dtype: string
-- id:  Filename secret-key (sender)
-  label: filename_sk
-  dtype: string
+- id: filename_pk
+  label: Filename public-key (receiver)
+  dtype: file_open
+- id: filename_sk
+  label: Filename secret-key (sender)
+  dtype: file_open
 
 #  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
 #  Keys include:

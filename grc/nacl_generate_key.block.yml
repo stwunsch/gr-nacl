@@ -12,9 +12,9 @@ templates:
 #     * label (label shown in the GUI)
 #     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
 parameters:
-- id: Filename key
-  label: filename_key
-  dtype: string
+- id: filename_key
+  label: Filename key
+  dtype: file_save
 
 #  'file_format' specifies the version of the GRC yml format used in the file
 #  and should usually not be changed.
