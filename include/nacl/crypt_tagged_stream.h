@@ -21,35 +21,37 @@
 #ifndef INCLUDED_NACL_CRYPT_TAGGED_STREAM_H
 #define INCLUDED_NACL_CRYPT_TAGGED_STREAM_H
 
-#include <nacl/api.h>
 #include <gnuradio/tagged_stream_block.h>
+#include <nacl/api.h>
 
 namespace gr {
-  namespace nacl {
+namespace nacl {
+
+/*!
+ * \brief <+description of block+>
+ * \ingroup nacl
+ *
+ */
+class NACL_API crypt_tagged_stream : virtual public gr::tagged_stream_block
+{
+public:
+    typedef boost::shared_ptr<crypt_tagged_stream> sptr;
 
     /*!
-     * \brief <+description of block+>
-     * \ingroup nacl
+     * \brief Return a shared_ptr to a new instance of nacl::crypt_tagged_stream.
      *
+     * To avoid accidental use of raw pointers, nacl::crypt_tagged_stream's
+     * constructor is in a private implementation
+     * class. nacl::crypt_tagged_stream::make is the public interface for
+     * creating new instances.
      */
-    class NACL_API crypt_tagged_stream : virtual public gr::tagged_stream_block
-    {
-     public:
-      typedef boost::shared_ptr<crypt_tagged_stream> sptr;
+    static sptr make(std::string key,
+                     std::string nonce,
+                     bool rotate_nonce = false,
+                     const std::string& len_key = "packet_len");
+};
 
-      /*!
-       * \brief Return a shared_ptr to a new instance of nacl::crypt_tagged_stream.
-       *
-       * To avoid accidental use of raw pointers, nacl::crypt_tagged_stream's
-       * constructor is in a private implementation
-       * class. nacl::crypt_tagged_stream::make is the public interface for
-       * creating new instances.
-       */
-      static sptr make(std::string key, std::string nonce, bool rotate_nonce=false, const std::string& len_key="packet_len");
-    };
-
-  } // namespace nacl
+} // namespace nacl
 } // namespace gr
 
 #endif /* INCLUDED_NACL_CRYPT_TAGGED_STREAM_H */
-

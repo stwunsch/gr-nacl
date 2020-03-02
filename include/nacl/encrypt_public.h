@@ -21,35 +21,34 @@
 #ifndef INCLUDED_NACL_ENCRYPT_PUBLIC_H
 #define INCLUDED_NACL_ENCRYPT_PUBLIC_H
 
-#include <nacl/api.h>
 #include <gnuradio/block.h>
+#include <nacl/api.h>
 
 namespace gr {
-  namespace nacl {
+namespace nacl {
+
+/*!
+ * \brief <+description of block+>
+ * \ingroup nacl
+ *
+ */
+class NACL_API encrypt_public : virtual public gr::block
+{
+public:
+    typedef boost::shared_ptr<encrypt_public> sptr;
 
     /*!
-     * \brief <+description of block+>
-     * \ingroup nacl
+     * \brief Return a shared_ptr to a new instance of nacl::encrypt_public.
      *
+     * To avoid accidental use of raw pointers, nacl::encrypt_public's
+     * constructor is in a private implementation
+     * class. nacl::encrypt_public::make is the public interface for
+     * creating new instances.
      */
-    class NACL_API encrypt_public : virtual public gr::block
-    {
-     public:
-      typedef boost::shared_ptr<encrypt_public> sptr;
+    static sptr make(std::string filename_pk, std::string filename_sk);
+};
 
-      /*!
-       * \brief Return a shared_ptr to a new instance of nacl::encrypt_public.
-       *
-       * To avoid accidental use of raw pointers, nacl::encrypt_public's
-       * constructor is in a private implementation
-       * class. nacl::encrypt_public::make is the public interface for
-       * creating new instances.
-       */
-      static sptr make(std::string filename_pk, std::string filename_sk);
-    };
-
-  } // namespace nacl
+} // namespace nacl
 } // namespace gr
 
 #endif /* INCLUDED_NACL_ENCRYPT_PUBLIC_H */
-

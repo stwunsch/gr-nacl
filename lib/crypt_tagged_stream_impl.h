@@ -24,33 +24,35 @@
 #include <nacl/crypt_tagged_stream.h>
 
 namespace gr {
-  namespace nacl {
+namespace nacl {
 
-    class crypt_tagged_stream_impl : public crypt_tagged_stream
-    {
-     private:
-      // Nothing to declare in this block.
+class crypt_tagged_stream_impl : public crypt_tagged_stream
+{
+private:
+    // Nothing to declare in this block.
 
-     protected:
-      int calculate_output_stream_length(const gr_vector_int &ninput_items);
+protected:
+    int calculate_output_stream_length(const gr_vector_int& ninput_items);
 
-     public:
-      crypt_tagged_stream_impl(std::string key, std::string nonce, bool rotate_nonce, const std::string& len_key);
-      ~crypt_tagged_stream_impl();
+public:
+    crypt_tagged_stream_impl(std::string key,
+                             std::string nonce,
+                             bool rotate_nonce,
+                             const std::string& len_key);
+    ~crypt_tagged_stream_impl();
 
-      uint8_t* d_key;
-      uint8_t* d_nonce;
-      bool d_rotate_nonce;
+    uint8_t* d_key;
+    uint8_t* d_nonce;
+    bool d_rotate_nonce;
 
-      // Where all the action really happens
-      int work(int noutput_items,
-            gr_vector_int &ninput_items,
-            gr_vector_const_void_star &input_items,
-            gr_vector_void_star &output_items);
-    };
+    // Where all the action really happens
+    int work(int noutput_items,
+             gr_vector_int& ninput_items,
+             gr_vector_const_void_star& input_items,
+             gr_vector_void_star& output_items);
+};
 
-  } // namespace nacl
+} // namespace nacl
 } // namespace gr
 
 #endif /* INCLUDED_NACL_CRYPT_TAGGED_STREAM_IMPL_H */
-

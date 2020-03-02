@@ -21,35 +21,34 @@
 #ifndef INCLUDED_NACL_GENERATE_KEY_H
 #define INCLUDED_NACL_GENERATE_KEY_H
 
-#include <nacl/api.h>
 #include <gnuradio/block.h>
+#include <nacl/api.h>
 
 namespace gr {
-  namespace nacl {
+namespace nacl {
+
+/*!
+ * \brief <+description of block+>
+ * \ingroup nacl
+ *
+ */
+class NACL_API generate_key : virtual public gr::block
+{
+public:
+    typedef boost::shared_ptr<generate_key> sptr;
 
     /*!
-     * \brief <+description of block+>
-     * \ingroup nacl
+     * \brief Return a shared_ptr to a new instance of nacl::generate_key.
      *
+     * To avoid accidental use of raw pointers, nacl::generate_key's
+     * constructor is in a private implementation
+     * class. nacl::generate_key::make is the public interface for
+     * creating new instances.
      */
-    class NACL_API generate_key : virtual public gr::block
-    {
-     public:
-      typedef boost::shared_ptr<generate_key> sptr;
+    static sptr make(std::string filename_key);
+};
 
-      /*!
-       * \brief Return a shared_ptr to a new instance of nacl::generate_key.
-       *
-       * To avoid accidental use of raw pointers, nacl::generate_key's
-       * constructor is in a private implementation
-       * class. nacl::generate_key::make is the public interface for
-       * creating new instances.
-       */
-      static sptr make(std::string filename_key);
-    };
-
-  } // namespace nacl
+} // namespace nacl
 } // namespace gr
 
 #endif /* INCLUDED_NACL_GENERATE_KEY_H */
-

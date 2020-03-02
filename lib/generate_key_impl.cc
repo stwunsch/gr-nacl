@@ -22,54 +22,50 @@
 #include "config.h"
 #endif
 
-#include <gnuradio/io_signature.h>
 #include "generate_key_impl.h"
+#include <gnuradio/io_signature.h>
 
-#include <fstream>
 #include <sodium.h>
+#include <fstream>
 
 namespace gr {
-  namespace nacl {
+namespace nacl {
 
-    generate_key::sptr
-    generate_key::make(std::string filename_key)
-    {
-      return gnuradio::get_initial_sptr
-        (new generate_key_impl(filename_key));
-    }
+generate_key::sptr generate_key::make(std::string filename_key)
+{
+    return gnuradio::get_initial_sptr(new generate_key_impl(filename_key));
+}
 
-    /*
-     * The private constructor
-     */
-    generate_key_impl::generate_key_impl(std::string filename_key)
-      : gr::block("generate_key",
-              gr::io_signature::make(0,0,0),
-              gr::io_signature::make(0,0,0))
-    {
-        unsigned char *key = new unsigned char[crypto_secretbox_KEYBYTES];
+/*
+ * The private constructor
+ */
+generate_key_impl::generate_key_impl(std::string filename_key)
+    : gr::block("generate_key",
+                gr::io_signature::make(0, 0, 0),
+                gr::io_signature::make(0, 0, 0))
+{
+    unsigned char* key = new unsigned char[crypto_secretbox_KEYBYTES];
 
-        // generate keypair
-        randombytes_buf(key,sizeof(key));
-        std::cout << "Key " << filename_key << " generated successfully." << std::endl;
+    // generate keypair
+    randombytes_buf(key, sizeof(key));
+    std::cout << "Key " << filename_key << " generated successfully." << std::endl;
 
-        // save keys to files
-        std::ofstream file_key(filename_key.c_str());
-        for(int k=0;k<crypto_secretbox_KEYBYTES; k++) file_key << key[k];
-        file_key.close();
+    // save keys to files
+    std::ofstream file_key(filename_key.c_str());
+    for (int k = 0; k < crypto_secretbox_KEYBYTES; k++)
+        file_key << key[k];
+    file_key.close();
 
-        std::cout << "Key " << filename_key << " saved to file." << std::endl;
+    std::cout << "Key " << filename_key << " saved to file." << std::endl;
 
-        // clean-up
-        delete[] key;
-    }
+    // clean-up
+    delete[] key;
+}
 
-    /*
-     * Our virtual destructor.
-     */
-    generate_key_impl::~generate_key_impl()
-    {
-    }
+/*
+ * Our virtual destructor.
+ */
+generate_key_impl::~generate_key_impl() {}
 
-  } /* namespace nacl */
+} /* namespace nacl */
 } /* namespace gr */
-

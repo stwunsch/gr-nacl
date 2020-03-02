@@ -21,35 +21,34 @@
 #ifndef INCLUDED_NACL_DECRYPT_PUBLIC_H
 #define INCLUDED_NACL_DECRYPT_PUBLIC_H
 
-#include <nacl/api.h>
 #include <gnuradio/block.h>
+#include <nacl/api.h>
 
 namespace gr {
-  namespace nacl {
+namespace nacl {
+
+/*!
+ * \brief <+description of block+>
+ * \ingroup nacl
+ *
+ */
+class NACL_API decrypt_public : virtual public gr::block
+{
+public:
+    typedef boost::shared_ptr<decrypt_public> sptr;
 
     /*!
-     * \brief <+description of block+>
-     * \ingroup nacl
+     * \brief Return a shared_ptr to a new instance of nacl::decrypt_public.
      *
+     * To avoid accidental use of raw pointers, nacl::decrypt_public's
+     * constructor is in a private implementation
+     * class. nacl::decrypt_public::make is the public interface for
+     * creating new instances.
      */
-    class NACL_API decrypt_public : virtual public gr::block
-    {
-     public:
-      typedef boost::shared_ptr<decrypt_public> sptr;
+    static sptr make(std::string filename_pk, std::string filename_sk);
+};
 
-      /*!
-       * \brief Return a shared_ptr to a new instance of nacl::decrypt_public.
-       *
-       * To avoid accidental use of raw pointers, nacl::decrypt_public's
-       * constructor is in a private implementation
-       * class. nacl::decrypt_public::make is the public interface for
-       * creating new instances.
-       */
-      static sptr make(std::string filename_pk, std::string filename_sk);
-    };
-
-  } // namespace nacl
+} // namespace nacl
 } // namespace gr
 
 #endif /* INCLUDED_NACL_DECRYPT_PUBLIC_H */
-

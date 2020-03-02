@@ -24,26 +24,25 @@
 #include <nacl/encrypt_secret.h>
 
 namespace gr {
-  namespace nacl {
+namespace nacl {
 
-    class encrypt_secret_impl : public encrypt_secret
-    {
-     private:
-      // Nothing to declare in this block.
+class encrypt_secret_impl : public encrypt_secret
+{
+private:
+    // Nothing to declare in this block.
 
-     public:
-      encrypt_secret_impl(std::string filename_key);
-      ~encrypt_secret_impl();
+public:
+    encrypt_secret_impl(std::string filename_key);
+    ~encrypt_secret_impl();
 
-      void handle_msg(pmt::pmt_t msg);
+    void handle_msg(pmt::pmt_t msg);
 
-      pmt::pmt_t d_port_id_in, d_port_id_out;
-      std::string d_filename_key;
-      unsigned char *d_key;
-    };
+    pmt::pmt_t d_port_id_in, d_port_id_out;
+    std::string d_filename_key;
+    unsigned char* d_key;
+};
 
-  } // namespace nacl
+} // namespace nacl
 } // namespace gr
 
 #endif /* INCLUDED_NACL_ENCRYPT_SECRET_IMPL_H */
-

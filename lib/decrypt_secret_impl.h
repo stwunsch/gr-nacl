@@ -24,26 +24,25 @@
 #include <nacl/decrypt_secret.h>
 
 namespace gr {
-  namespace nacl {
+namespace nacl {
 
-    class decrypt_secret_impl : public decrypt_secret
-    {
-     private:
-      // Nothing to declare in this block.
+class decrypt_secret_impl : public decrypt_secret
+{
+private:
+    // Nothing to declare in this block.
 
-     public:
-      decrypt_secret_impl(std::string filename_key);
-      ~decrypt_secret_impl();
+public:
+    decrypt_secret_impl(std::string filename_key);
+    ~decrypt_secret_impl();
 
-      void handle_msg(pmt::pmt_t msg);
+    void handle_msg(pmt::pmt_t msg);
 
-      pmt::pmt_t d_port_id_in, d_port_id_out;
-      std::string d_filename_key;
-      unsigned char *d_key;
-    };
+    pmt::pmt_t d_port_id_in, d_port_id_out;
+    std::string d_filename_key;
+    unsigned char* d_key;
+};
 
-  } // namespace nacl
+} // namespace nacl
 } // namespace gr
 
 #endif /* INCLUDED_NACL_DECRYPT_SECRET_IMPL_H */
-

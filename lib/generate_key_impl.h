@@ -24,20 +24,19 @@
 #include <nacl/generate_key.h>
 
 namespace gr {
-  namespace nacl {
+namespace nacl {
 
-    class generate_key_impl : public generate_key
-    {
-     private:
-      // Nothing to declare in this block.
+class generate_key_impl : public generate_key
+{
+private:
+    // Nothing to declare in this block.
 
-     public:
-      generate_key_impl(std::string filename_key);
-      ~generate_key_impl();
-    };
+public:
+    generate_key_impl(std::string filename_key);
+    ~generate_key_impl();
+};
 
-  } // namespace nacl
+} // namespace nacl
 } // namespace gr
 
 #endif /* INCLUDED_NACL_GENERATE_KEY_IMPL_H */
-

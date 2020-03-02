@@ -24,20 +24,19 @@
 #include <nacl/generate_keypair.h>
 
 namespace gr {
-  namespace nacl {
+namespace nacl {
 
-    class generate_keypair_impl : public generate_keypair
-    {
-     private:
-      // Nothing to declare in this block.
+class generate_keypair_impl : public generate_keypair
+{
+private:
+    // Nothing to declare in this block.
 
-     public:
-      generate_keypair_impl(std::string filename_sk, std::string filename_pk);
-      ~generate_keypair_impl();
-    };
+public:
+    generate_keypair_impl(std::string filename_sk, std::string filename_pk);
+    ~generate_keypair_impl();
+};
 
-  } // namespace nacl
+} // namespace nacl
 } // namespace gr
 
 #endif /* INCLUDED_NACL_GENERATE_KEYPAIR_IMPL_H */
-
